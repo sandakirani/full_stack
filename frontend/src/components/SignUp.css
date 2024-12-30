@@ -1,6 +1,6 @@
 /* Overall container */
 .signup-page {
-    background-image: url('../assets/login_background.jpeg');
+    background-image: url('../assets/login_background.png');
     background-size: cover;
     background-position: center;
     width: 100vw;
@@ -9,10 +9,21 @@
     justify-content: center;
     align-items: center;
 }
+.logo-container {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    
+  }
+  
+  .logo2 {
+    width: 200px;
+    height: 200px;
 
+  }
 .signup-container {
     width: 450px;
-    height: 500px;
+    height: 580px;
     padding: 20px;
     background-color: black;
     border-radius: 8px;

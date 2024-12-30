@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import './Login.css';
+import logo from "../assets/cw.png"
 
 const Login: React.FC = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -14,6 +15,9 @@ const Login: React.FC = () => {
 
   return (
     <div className="login-page">
+      <div className="logo-container">
+      <img src ={logo} className="logo2"/>
+      </div>
       <div className="login-container">
         <h2>WELCOME</h2>
         <input type="email" placeholder="Enter Email" />

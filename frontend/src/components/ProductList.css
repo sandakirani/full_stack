@@ -1,0 +1,19 @@
+
+.products{
+    background-color: black;;
+    }
+
+  .products-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-left: 70px;
+    background-color: black;
+  }
+  
+  .product-cell {
+    background-color: black;
+    border: 1px solid black;
+    text-align: center;
+    padding: 15px;
+  }
+  

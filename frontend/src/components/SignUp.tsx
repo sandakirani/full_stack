@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./SignUp.css";
+import logo from "../assets/cw.png"
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,8 +17,12 @@ const Signup: React.FC = () => {
         setConfirmPasswordVisible(!confirmPasswordVisible);
     };
 
+    const navigate = useNavigate();
     return (
         <div className="signup-page">
+            <div className="logo-container">
+      <img src ={logo} className="logo2"/>
+      </div>
             <div className="signup-container">
 
                 <h2>SIGN UP</h2>
@@ -29,6 +35,11 @@ const Signup: React.FC = () => {
                     <input
                         type="email"
                         placeholder="Enter Email"
+                        className="signup-input"
+                    />
+                    <input
+                        type="phonenumber"
+                        placeholder="Enter Phone Number"
                         className="signup-input"
                     />
                     <div className="password-container">
@@ -57,7 +68,7 @@ const Signup: React.FC = () => {
                             <FontAwesomeIcon icon={confirmPasswordVisible ? faEyeSlash : faEye} />
                         </span>
                     </div>
-                    <button type="submit" className="signup-button">
+                    <button type="submit" className="signup-button" onClick={() => navigate("/home")}>
                         Create Account
                     </button>
                 </form>

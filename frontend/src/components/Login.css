@@ -11,7 +11,7 @@
   }
   
   .login-page {
-  background-image: url('../assets/login_background.jpeg');
+  background-image: url('../assets/login_background.png');
   background-size: cover;
   background-position: center;
   width: 100vw;
@@ -19,6 +19,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  }
+
+  .logo-container {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    
+  }
+  
+  .logo2 {
+    width: 200px;
+    height: 200px;
+
   }
   .login-container {
     width: 450px;
@@ -95,22 +108,23 @@
     color: white;
   }
   
-  .login-container button {
+  .btn {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    background-color: white;
-    color: black;
+    background-color: #555;
+    color: white;
     border: none;
     border-radius: 40px;
     cursor: pointer;
-    font-size: 20px;
-    border: 3px solid white;
+    font-size: 25px;
+    font-weight: bold;
+    border: 2px solid black;
+    font-family: caladea;
   }
-  
-  .login-container button:hover {
-    background-color:rgb(71, 64, 64);
-    border: 3px solid white;
+  .btn:hover {
+    background-color:black;
+    border: 2px solid white;
     color: white;
     font-weight: bold;
   }
