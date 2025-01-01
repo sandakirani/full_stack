@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
               <li><Link to="/privacy">Privacy Policy</Link></li>
               <li><Link to="/condition">Terms and Conditions</Link></li>
               <li><Link to="/exchange">Exchanges and Refunds</Link></li>
-              <li><Link to="/warranty">Warranty</Link></li>
+              <li><Link to="/warranty-content">Warranty</Link></li>
               <li><Link to="/payonline">Online Payments</Link></li>
             </ul>
           </div>

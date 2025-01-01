@@ -1,0 +1,47 @@
+/* General styles for the About Us page */
+body {
+    background-color: rgba(0, 0, 0, 0.8); /* Deep blue background */
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .about-us-container {
+    padding: 20px;
+  }
+  
+  /* Breadcrumb styles */
+  .breadcrumb {
+    font-size: 14px;
+    color: #cccccc; /* Light gray */
+    margin-bottom: 10px;
+  }
+  
+  .breadcrumb a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Main title */
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  /* Section styles */
+  .section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .section p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
