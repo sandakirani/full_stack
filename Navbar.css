@@ -1,0 +1,92 @@
+.navbar {
+    background-color: #D9D9D9;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+  }
+
+  .logo1 {
+    width: 100px;
+    height: 100px;
+
+  }
+
+  .search-bar {
+    flex-grow: 1;
+    margin: 0 15px;
+    padding: 8px;
+    border-radius: 20px;
+    position: relative;
+    align-items: center;
+  }
+
+
+  .search-input {
+    padding: 10px 40px 10px 20px;
+    border: none;
+    border-radius: 20px;
+    width: 1100px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .fa-search {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .search-bar input:focus {
+    outline: none;
+  }
+
+  .icons-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-right: 20px;
+  }
+
+  .icon-wrapper {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .icon1 {
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+  }
+
+
+  .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #243653;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 50%;
+  }
+
+  .account {
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    margin-top: -4px;
+  }
