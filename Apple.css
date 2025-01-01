@@ -1,0 +1,82 @@
+.brand-page{
+    background-color: #16263E;
+    padding: 20px;
+}
+.breadcrumb{
+    margin : 30px;
+}
+.brand-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.brand-button {
+    background-color: #304566;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 50px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius:50px;
+    width:200px;
+}
+
+.brand-button:hover {
+    background-color: white;
+    color: black;
+}
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
+    gap: 20px; /* Space between grid items */
+    padding: 20px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+.out-of-stock{
+    background-color: green;
+    color: black;
+}
+.pname{
+    color:black;
+}
+.price{
+    color:#304566;
+}
+.product img {
+    width: 100%; /* Make image responsive */
+    height: auto;
+    max-height: 200px; /* Set a max height for images */
+    object-fit: contain;
+}
+.heart-icon1 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+.color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 5px;
+    display: inline-block;
+    cursor: pointer; /* Pointer cursor for better UX */
+}
+
+.color-circle.selected {
+    border: 3px solid black; /* Bold black border for selected color */
+}
+
