@@ -175,18 +175,27 @@ const ApplePage: React.FC = () => {
   };
 
  
- const handleFavoriteClick = (productId: number) => {
-    setFavorites((prevFavorites) => {
-      const currentCount = prevFavorites[productId] || 0;
-      const newCount = currentCount === 0 ? 1 : 0; // Toggle between 0 and 1
-      if (newCount === 1) {
-        incrementFavorites();
-      } else {
-        decrementFavorites();
-      }
-      return { ...prevFavorites, [productId]: newCount };
-    });
+  const handleFavoriteClick = (productId: number) => {
+    console.log(`Clicked product ID: ${productId}`);
+    console.log(`Is favorited before click: ${favorites[productId] === 1}`);
+  
+    const isFavorited = favorites[productId] === 1;
+  
+    setFavorites((prevFavorites) => ({
+      ...prevFavorites,
+      [productId]: isFavorited ? 0 : 1,
+    }));
+  
+    if (isFavorited) {
+      console.log('Decrementing favorites count');
+      decrementFavorites();
+    } else {
+      console.log('Incrementing favorites count');
+      incrementFavorites();
+    }
   };
+  
+  
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOption(e.target.value);
   };
@@ -233,10 +242,11 @@ const ApplePage: React.FC = () => {
           All phones
         </button>
       </div>
-      <h2>Apple</h2>
+      <h2 className='brandname'>Apple</h2>
+      
       <div className="sort-container">
         <label htmlFor="sort">Sort by:</label>
-        <select id="sort" value={sortOption} onChange={handleSortChange}>
+        <select className="select" id="sort" value={sortOption} onChange={handleSortChange}>
           <option value="popularity">Popularity</option>
           <option value="latest">Latest</option>
         </select>
