@@ -1,15 +1,20 @@
-import React from 'react';
-import './navbar.css';
-import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faHeart, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
-import { useFavorites } from '../components/FavoritesContext'; // Import the custom hook
-import logo from '../assets/cwb.png';
+import React from "react";
+import "./navbar.css";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSearch,
+  faHeart,
+  faShoppingCart,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import { useFavorites } from "../components/FavoritesContext"; // Import the custom hook
+import logo from "../assets/cwb.png";
 
 const Navbar: React.FC = () => {
   const { favoritesCount } = useFavorites(); // Use the context
   const [cartCount, setCartCount] = React.useState(0);
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState("");
   const navigate = useNavigate();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +23,7 @@ const Navbar: React.FC = () => {
 
   const handleSearchSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('Search for:', searchQuery);
+    console.log("Search for:", searchQuery);
   };
 
   const addToCart = () => {
@@ -40,16 +45,28 @@ const Navbar: React.FC = () => {
       </form>
       <div className="icons-container">
         <div className="icon-wrapper">
-          <FontAwesomeIcon icon={faHeart} className="icon1" onClick={() => navigate('/wishlist')} />
+          <FontAwesomeIcon
+            icon={faHeart}
+            className="icon1"
+            onClick={() => navigate("/wishlist")}
+          />
           <span className="badge">{favoritesCount}</span>
         </div>
 
         <div className="icon-wrapper" onClick={addToCart}>
-          <FontAwesomeIcon icon={faShoppingCart} className="icon1" onClick={() => navigate('/addcart')} />
+          <FontAwesomeIcon
+            icon={faShoppingCart}
+            className="icon1"
+            onClick={() => navigate("/addcart")}
+          />
           <span className="badge">{cartCount}</span>
         </div>
 
-        <FontAwesomeIcon icon={faUser} className="account" onClick={() => navigate('/account')} />
+        <FontAwesomeIcon
+          icon={faUser}
+          className="account"
+          onClick={() => navigate("/account")}
+        />
       </div>
     </div>
   );
