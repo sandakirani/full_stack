@@ -1,0 +1,164 @@
+/* App.css */
+.app-container {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #16263E;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Order Summary*/
+.order-summary-container {
+  position: relative;
+  background-color: #16263E;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  padding: 20px;
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.first-box {
+  display: flex;
+}
+
+.order-details {
+  max-width: 50%;
+}
+
+.order-details p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.image-container {
+  position: absolute; /* Position relative to the nearest positioned ancestor */
+  top: 20px; 
+  right: 200px; 
+  max-width: 40%;
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+}
+
+/*Product List*/
+.product-list {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #304566;
+}
+
+.product-list th, td {
+  font-size: 16px;
+  text-align:left;
+}
+
+.product-item {
+  margin-bottom: 15px;
+}
+
+.product-item p {
+  margin: 5px 0;
+}
+
+.product-list .sub-total {
+  text-align: right;
+}
+
+.product-list .prices {
+  color: rgb(223, 43, 79);
+  font-size: 16px;
+  text-align: right;
+}
+
+.product-list .product{
+  color: #E3E0E0;
+  font-size: 16px;
+}
+
+.product-list .product:hover {
+  color: #4782e0;
+}
+
+.product-list .quantity {
+  color: #E3E0E0;
+  font-size: 16px;
+}
+
+.product-list .product-details {
+  color: #E3E0E0;
+  font-size: 12px;
+}
+
+/*Price Summary*/
+.price-summary {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 80px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #304566;
+  font-size: 16px;
+}
+
+.price-summary p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.price-summary .price {
+  color: rgb(223, 43, 79);
+  text-align: right;
+}
+
+/* Track your order button */
+.track-order-button {
+position: absolute; /* Position relative to the nearest positioned ancestor */
+bottom: 20px; 
+right: 20px; 
+padding: 10px 20px;
+background-color: #304566;
+color: #fff;
+border: none;
+border-radius: 4px;
+font-size: 16px;
+cursor: pointer;
+text-align: center;
+
+/* Flexbox to align content vertically and horizontally */
+display: flex;
+align-items: center; /* Vertically center the content */
+justify-content: center; /* Horizontally center the text and arrow */
+gap: 10px; /* Add space between text and arrow */
+}
+
+.track-order-button .arrow {
+display: inline-block;
+transition: transform 0.3s ease, color 0.3s ease;
+font-size: 18px;
+}
+
+.track-order-button:hover .arrow {
+transform: scale(1.5); /* Enlarge arrow */
+color: #0be040; /* Change arrow color */
+}
+
+  
+  
