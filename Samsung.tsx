@@ -3,149 +3,141 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import './Apple.css';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../components/FavoritesContext';
-import spromaxblack from '../assets/Apple/iPhone 16 Pro Max Black Titanium.jpg';
-import spromaxwhite from '../assets/Apple/iPhone 16 Pro Max White Titanium.jpg';
-import spromaxdesert from '../assets/Apple/iPhone 16 Pro Max Desert Titanium.jpg';
-import spromaxnatural from '../assets/Apple/iPhone 16 Pro Max Natural Titanium.jpg';
-import splusblack from '../assets/Apple/iPhone 16 Plus black.jpg';
-import spluspink from '../assets/Apple/iPhone 16 Plus Pink.jpg';
-import splusteal from '../assets/Apple/iPhone 16 Plus teal.jpg';
-import splusultramarine from '../assets/Apple/iPhone 16 Plus Ultramarine.webp';
-import spluswhite from '../assets/Apple/iPhone 16 Plus white.jpeg';
-import fipromaxblack from '../assets/Apple/iPhone 15 pro max black Titanium.jpg';
-import fipromaxwhite from '../assets/Apple/iPhone 15 pro max White Titanium.jpg';
-import fipromaxblue from '../assets/Apple/iPhone 15 Pro Max blue.jpg';
-import fipromaxnatural from '../assets/Apple/iPhone 15 pro max Natural Titanium.jpg';
-import fifplusblue from '../assets/Apple/iPhone 15 Plus blue.webp';
-import fifpluspink from '../assets/Apple/iPhone 15 Plus pink.avif';
-import fifplusyellow from '../assets/Apple/iPhone 15 Plus yellow.jpg';
-import foplusmidnight from '../assets/Apple/iPhone 14 Plus midnight.webp';
-import fopluspurple from '../assets/Apple/iPhone 14 Plus purple.jpg';
-import foplusred from '../assets/Apple/iPhone 14 Plus red.jpg';
-import foplusstarlight from '../assets/Apple/iPhone 14 Plus starlight.webp';
-import foplusyellow from '../assets/Apple/iPhone 14 Plus yellow.jpg';
+import s24ultrablack from '../assets/Samsung/samsung galaxy s24 ultra phantom black.jpg';
+import s24ultrasilver from '../assets/Samsung/samsung galaxy s24 ultra Phantom Silver.jpg';
+import s24ultragreen from '../assets/Samsung/samsung galaxy s24 ultra Phantom Green.webp';
+import sblack from '../assets/Samsung/samsung galaxy s24 phantom black.jpg';
+import ssilver from '../assets/Samsung/Samsung Galaxy S24 Phantom Silver.jpg';
+import spink from '../assets/Samsung/Samsung Galaxy S24 Phantom Pink.jpg';
+import Zfold6black from '../assets/Samsung/Samsung Galaxy Z Fold6 Phantom Black.webp';
+import zfold6beige from '../assets/Samsung/Samsung Galaxy Z Fold6 Beige.webp';
+import zfold6Burgundy from '../assets/Samsung/Samsung Galaxy Z Fold6 Burgundy.webp';
+import zflip6mint from '../assets/Samsung/Samsung Galaxy Z Flip6 mint.jpg';
+import zflip6borapurple from '../assets/Samsung/Samsung Galaxy Z Flip6 Bora Purple.jpg';
+import zflip6cream from '../assets/Samsung/Samsung Galaxy Z Flip6 Cream.webp';
+import s23ultrablack from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Black.jpg';
+import s23ultrasilver from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Silver.jpg';
+import s23ultralavender from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom lavender.webp';
+import s23FEgraphite from '../assets/Samsung/Samsung Galaxy S23 FE Graphite.jpg';
+import s23FElavender from '../assets/Samsung/Samsung Galaxy S23 FE Lavender.webp';
+import s23FEolive from '../assets/Samsung/Samsung Galaxy S23 FE Olive.webp';
+import A555Gblack from '../assets/Samsung/Samsung Galaxy A55 5G Awesome Black.jpg';
+import A555Gviolet from '../assets/Samsung/Samsung Galaxy A55 5G Awesome violet.jpg';
+import A555Gwhite from '../assets/Samsung/Samsung Galaxy A55 5G Awesome white.jpg';
+import M555GIcyblue from '../assets/Samsung/Samsung Galaxy M55 5G Icy Blue.webp';
+import M555GBlazing from '../assets/Samsung/Samsung Galaxy M55 5G Blazing Black.webp';
 
-const appleProducts = [
+const samsungproducts = [
   {
     id: 1,
-    name: 'iPhone 16 Pro Max',
-    price: 'LKR 389,900  LKR 684,900',
+    name: 'Samsung Galaxy S24 Ultra',
+    price: 'LKR 350,000 - LKR 450,000',
     stock: true,
     images: {
-      'Black': spromaxblack,
-      'White': spromaxwhite,
-      '#FAD5A5': spromaxdesert,
-      '#E5D3BF': spromaxnatural,
+      '#242725': s24ultrablack,
+      '#a3a4a': s24ultrasilver,
+      '#dce4d7': s24ultragreen
     },
   },
   {
     id: 2,
-    name: 'iPhone 16 Pro',
-    price: 'LKR 339,900 - LKR 649,900',
+    name: 'Samsung Galaxy S24',
+    price: 'LKR 250,000 - LKR 300,000',
     stock: false,
     images: {
-      'Black': spromaxblack,
-      'White': spromaxwhite,
-      '#FAD5A5': spromaxdesert,
-      '#E5D3BF': spromaxnatural,
+      '#242725': sblack,
+      '#a3a4a': ssilver,
+      '#E7D9DB': spink
     },
   },
   {
     id: 3,
-    name: 'iPhone 16 Plus',
-    price: 'LKR 299,900 - LKR 504,900',
+    name: 'Samsung Galaxy Z Fold6',
+    price: 'LKR 600,000 - LKR 700,000',
     stock: true,
     images: {
-      'Black': splusblack,
-      'Pink': spluspink,
-      'Teal': splusteal,
-      '#0437F2': splusultramarine,
-      'White': spluswhite,
+      '#242725': Zfold6black,
+      '#F5F5DC': zfold6beige,
+      '#800020': zfold6Burgundy
     },
   },
 
   {
     id: 4,
-    name: 'iPhone 15 Pro Max',
-    price: 'LKR 364,900 - LKR 664,900',
+    name: 'Samsung Galaxy Z Flip6',
+    price: 'LKR 350,000 - LKR 420,000',
     stock: false,
     images: {
-      'Black': fipromaxblack,
-      'White': fipromaxwhite,
-      'Blue': fipromaxblue,
-      '#E5D3BF': fipromaxnatural,
+      '#3EB489': zflip6mint,
+      '#bccfdb': zflip6borapurple,
+      '#FFFDD0': zflip6cream
     },
   },
   {
     id: 5,
-    name: 'iPhone 15 Pro',
-    price: 'LKR 324,900 - LKR 619,900',
+    name: 'Samsung Galaxy S23 Ultra',
+    price: 'LKR 300,000 - LKR 400,000',
     stock: true,
     images: {
-      'Black': fipromaxblack,
-      'White': fipromaxwhite,
-      'Blue': fipromaxblue,
-      '#E5D3BF': fipromaxnatural,
+      'Black': s23ultrablack,
+      '#C0C0C0': s23ultrasilver,
+      '#E6E6FA': s23ultralavender
     },
   },
 
   {
     id: 6,
-    name: 'iPhone 15 Plus',
-    price: 'LKR 269,900 - LKR 489,900',
+    name: 'Samsung Galaxy S23 FE',
+    price: 'LKR 150,000 - LKR 200,000',
     stock: true,
     images: {
-      'Blue': fifplusblue,
-      'Pink': fifpluspink,
-      'Yellow': fifplusyellow,
+      '#251607': s23FEgraphite,
+      '#E6E6FA': s23FElavender,
+      '#808000': s23FEolive
     },
   },
   {
     id: 7,
-    name: 'iPhone 15',
-    price: 'LKR 219,900 - LKR 449,900',
+    name: 'Samsung Galaxy A55 5G',
+    price: 'LKR 90,000 - LKR 120,000',
     stock: false,
     images: {
-      'Blue': fifplusblue,
-      'Pink': fifpluspink,
-      'Yellow': fifplusyellow,
+      'Blue': A555Gblack,
+      '#7F00FF': A555Gviolet,
+      'Yellow': A555Gwhite
     },
   },
   {
     id: 8,
-    name: 'iPhone 14 Plus',
-    price: 'LKR 249,900 - LKR 459,900',
+    name: 'Samsung Galaxy A35 5G',
+    price: 'LKR 80,000 - LKR 100,000',
     stock: true,
     images: {
-      '#191970': foplusmidnight,
-      'Purple': fopluspurple,
-      'Red': foplusred,
-      '#faf7f2': foplusstarlight,
-      'Yellow': foplusyellow,
+      'Blue': A555Gblack,
+      '#7F00FF': A555Gviolet,
+      'white': A555Gwhite
     },
   },
   {
     id: 9,
-    name: 'iPhone 14',
-    price: 'LKR 189,900 - LKR 409,900',
+    name: 'Samsung Galaxy M55 5G',
+    price: 'LKR 130,000 - LKR 170,000',
     stock: true,
     images: {
-      '#191970': foplusmidnight,
-      'Purple': fopluspurple,
-      'Red': foplusred,
-      '#faf7f2': foplusstarlight,
-      'Yellow': foplusyellow,
+      '#739BD0': M555GIcyblue,
+      '#FF6700': M555GBlazing
     },
   },
 ];
 
-const ApplePage: React.FC = () => {
+const SamsungPage: React.FC = () => {
   const [selectedColors, setSelectedColors] = useState<{ [productId: number]: string }>(
-    appleProducts.reduce((acc, product) => {
+    samsungproducts.reduce((acc, product) => {
       const defaultColor = Object.keys(product.images)[0]; // Set the first color as the default
       acc[product.id] = defaultColor;
       return acc;
@@ -204,7 +196,7 @@ const ApplePage: React.FC = () => {
     navigate(`/${brand.toLowerCase()}`, { state: { brand } });
   };
 
-  const sortedProducts = [...appleProducts].sort((a, b) => {
+  const sortedProducts = [...samsungproducts].sort((a, b) => {
     switch (sortOption) {
       case 'popularity':
         return b.stock === a.stock ? 0 : b.stock ? -1 : 1;
@@ -219,8 +211,8 @@ const ApplePage: React.FC = () => {
     <div className="brand-page">
       <Navbar />
       <div className="breadcrumb">
-        Home {currentBrand !== 'Home' && ` > `}
-        {currentBrand !== 'Home' && <strong>{currentBrand}</strong>}
+        <Link to="/home">Home</Link> {currentBrand !== 'Home' && ` > `}
+        {currentBrand !== 'Home' && <Link to="/apple"><strong>{currentBrand}</strong></Link>}
       </div>
       <div className="brand-buttons">
         <button onClick={() => handleNavigation('Apple')} className="brand-button">
@@ -292,4 +284,4 @@ const ApplePage: React.FC = () => {
   );
 };
 
-export default ApplePage;
+export default SamsungPage;
