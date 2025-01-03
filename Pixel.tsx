@@ -8,136 +8,118 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../components/FavoritesContext';
-import s24ultrablack from '../assets/Samsung/samsung galaxy s24 ultra phantom black.jpg';
-import s24ultrasilver from '../assets/Samsung/samsung galaxy s24 ultra Phantom Silver.jpg';
-import s24ultragreen from '../assets/Samsung/samsung galaxy s24 ultra Phantom Green.webp';
-import sblack from '../assets/Samsung/samsung galaxy s24 phantom black.jpg';
-import ssilver from '../assets/Samsung/Samsung Galaxy S24 Phantom Silver.jpg';
-import spink from '../assets/Samsung/Samsung Galaxy S24 Phantom Pink.jpg';
-import Zfold6black from '../assets/Samsung/Samsung Galaxy Z Fold6 Phantom Black.webp';
-import zfold6beige from '../assets/Samsung/Samsung Galaxy Z Fold6 Beige.webp';
-import zfold6Burgundy from '../assets/Samsung/Samsung Galaxy Z Fold6 Burgundy.webp';
-import zflip6mint from '../assets/Samsung/Samsung Galaxy Z Flip6 mint.jpg';
-import zflip6borapurple from '../assets/Samsung/Samsung Galaxy Z Flip6 Bora Purple.jpg';
-import zflip6cream from '../assets/Samsung/Samsung Galaxy Z Flip6 Cream.webp';
-import s23ultrablack from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Black.jpg';
-import s23ultrasilver from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Silver.jpg';
-import s23ultralavender from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom lavender.webp';
-import s23FEgraphite from '../assets/Samsung/Samsung Galaxy S23 FE Graphite.jpg';
-import s23FElavender from '../assets/Samsung/Samsung Galaxy S23 FE Lavender.webp';
-import s23FEolive from '../assets/Samsung/Samsung Galaxy S23 FE Olive.webp';
-import A555Gblack from '../assets/Samsung/Samsung Galaxy A55 5G Awesome Black.jpg';
-import A555Gviolet from '../assets/Samsung/Samsung Galaxy A55 5G Awesome violet.jpg';
-import A555Gwhite from '../assets/Samsung/Samsung Galaxy A55 5G Awesome white.jpg';
-import M555GIcyblue from '../assets/Samsung/Samsung Galaxy M55 5G Icy Blue.webp';
-import M555GBlazing from '../assets/Samsung/Samsung Galaxy M55 5G Blazing Black.webp';
+import pro9XLobsidian from '../assets/Pixel/Google Pixel 9 Pro XL Obsidian.jpg';
+import pro9XLporcelain from '../assets/Pixel/Google Pixel 9 Pro XL Porcelain.jpg';
+import pro9XLhazel from '../assets/Pixel/Google Pixel 9 Pro XL Hazel.webp';
+import pro9FoldObsidian from '../assets/Pixel/Google Pixel 9 Pro Fold Obsidian.jpg';
+import pro9Foldporcelain from '../assets/Pixel/Google Pixel 9 Pro Fold Porcelain.avif';
+import pro8obsidian from '../assets/Pixel/Google Pixel 8 Pro Obsidian.jpg';
+import pro8bay from '../assets/Pixel/Google Pixel 8 Pro bay.jpg';
+import Lemongrass8 from '../assets/Pixel/Google Pixel 8 Lemongrass.jpg';
+import Obsidian8 from '../assets/Pixel/Google Pixel 8 Obsidian.jpg';
+import porcelain8 from '../assets/Pixel/Google Pixel 8 porcelain.jpg';
+import A8Obsidian from '../assets/Pixel/Google Pixel 8A Obsidian.jpg';
+import A8porcelain from '../assets/Pixel/Google Pixel 8A porcelain.avif';
+import pro7obsidian from '../assets/Pixel/google pixel 7 pro obsidian.jpg';
+import pro7hazel from '../assets/Pixel/Google Pixel 7 Pro hazel.jpg';
+import pro7snow from '../assets/Pixel/Google Pixel 7 Pro snow.jpg';
 
-const samsungproducts = [
+
+
+const pixelproducts = [
   {
     id: 1,
-    name: 'Samsung Galaxy S24 Ultra',
-    price: 'LKR 350,000 - LKR 450,000',
+    name: 'Google Pixel 9 Pro XL',
+    price: 'LKR 254,500 - LKR 455,000',
     stock: true,
     images: {
-      '#242725': s24ultrablack,
-      '#a3a4a': s24ultrasilver,
-      '#dce4d7': s24ultragreen
+      '#71627a': pro9XLobsidian,
+      '#e9e0d5': pro9XLporcelain,
+      '#C8B575': pro9XLhazel
     },
   },
   {
     id: 2,
-    name: 'Samsung Galaxy S24',
-    price: 'LKR 250,000 - LKR 300,000',
+    name: 'Google Pixel 9 Pro',
+    price: 'LKR 261,900 - LKR 287,900',
     stock: false,
     images: {
-      '#242725': sblack,
-      '#a3a4a': ssilver,
-      '#E7D9DB': spink
+      '#71627a': pro9XLobsidian,
+      '#e9e0d5': pro9XLporcelain,
+      '#C8B575': pro9XLhazel
     },
   },
   {
     id: 3,
-    name: 'Samsung Galaxy Z Fold6',
-    price: 'LKR 600,000 - LKR 700,000',
+    name: 'Google Pixel 9',
+    price: 'LKR 199,000 - LKR 264,999',
     stock: true,
     images: {
-      '#242725': Zfold6black,
-      '#F5F5DC': zfold6beige,
-      '#800020': zfold6Burgundy
+      '#71627a': pro9XLobsidian,
+      '#e9e0d5': pro9XLporcelain,
+      '#C8B575': pro9XLhazel
     },
   },
 
   {
     id: 4,
-    name: 'Samsung Galaxy Z Flip6',
-    price: 'LKR 350,000 - LKR 420,000',
+    name: 'Google Pixel 9 Pro Fold',
+    price: 'LKR 439,000 - LKR 560,000',
     stock: false,
     images: {
-      '#3EB489': zflip6mint,
-      '#bccfdb': zflip6borapurple,
-      '#FFFDD0': zflip6cream
+      '#71627a': pro9FoldObsidian,
+      '#e9e0d5': pro9Foldporcelain
     },
   },
   {
     id: 5,
-    name: 'Samsung Galaxy S23 Ultra',
-    price: 'LKR 300,000 - LKR 400,000',
+    name: 'Google Pixel 8 Pro',
+    price: 'LKR 196,000 - LKR 212,950',
     stock: true,
     images: {
-      'Black': s23ultrablack,
-      '#C0C0C0': s23ultrasilver,
-      '#E6E6FA': s23ultralavender
+      '#71627a': pro8obsidian,
+      '#67412B': pro8bay
     },
   },
 
   {
     id: 6,
-    name: 'Samsung Galaxy S23 FE',
-    price: 'LKR 150,000 - LKR 200,000',
+    name: 'Google Pixel 8',
+    price: 'LKR 199,900 - LKR 279,900',
     stock: true,
     images: {
-      '#251607': s23FEgraphite,
-      '#E6E6FA': s23FElavender,
-      '#808000': s23FEolive
+      '#969580': Lemongrass8,
+      '#71627a': Obsidian8,
+      '#EFF2F3': porcelain8
     },
   },
   {
     id: 7,
-    name: 'Samsung Galaxy A55 5G',
-    price: 'LKR 90,000 - LKR 120,000',
+    name: 'Google Pixel 8A',
+    price: 'LKR 135,000 - LKR 150,000',
     stock: false,
     images: {
-      'Blue': A555Gblack,
-      '#7F00FF': A555Gviolet,
-      'Yellow': A555Gwhite
+      '#71627a': A8Obsidian,
+      '#EFF2F3': A8porcelain
     },
   },
   {
     id: 8,
-    name: 'Samsung Galaxy A35 5G',
-    price: 'LKR 80,000 - LKR 100,000',
+    name: 'Google Pixel 7 Pro',
+    price: 'LKR 180,000 - LKR 220,000',
     stock: true,
     images: {
-      'Blue': A555Gblack,
-      '#7F00FF': A555Gviolet,
-      'white': A555Gwhite
+      '#71627a': pro7obsidian,
+      '#C8B575': pro7hazel,
+      '#FFFAFA': pro7snow
     },
   },
-  {
-    id: 9,
-    name: 'Samsung Galaxy M55 5G',
-    price: 'LKR 130,000 - LKR 170,000',
-    stock: true,
-    images: {
-      '#739BD0': M555GIcyblue,
-      '#FF6700': M555GBlazing
-    },
-  },
+  
 ];
 
-const SamsungPage: React.FC = () => {
+const PixelPage: React.FC = () => {
   const [selectedColors, setSelectedColors] = useState<{ [productId: number]: string }>(
-    samsungproducts.reduce((acc, product) => {
+    pixelproducts.reduce((acc, product) => {
       const defaultColor = Object.keys(product.images)[0]; // Set the first color as the default
       acc[product.id] = defaultColor;
       return acc;
@@ -196,7 +178,7 @@ const SamsungPage: React.FC = () => {
     navigate(`/${brand.toLowerCase()}`, { state: { brand } });
   };
 
-  const sortedProducts = [...samsungproducts].sort((a, b) => {
+  const sortedProducts = [...pixelproducts].sort((a, b) => {
     switch (sortOption) {
       case 'popularity':
         return b.stock === a.stock ? 0 : b.stock ? -1 : 1;
@@ -284,4 +266,4 @@ const SamsungPage: React.FC = () => {
   );
 };
 
-export default SamsungPage;
+export default PixelPage;
