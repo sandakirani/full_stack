@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #16263E;
+  background-color: #fff;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -13,8 +13,8 @@
 /* Order Summary*/
 .order-summary-container {
   position: relative;
-  background-color: #16263E;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
