@@ -8,112 +8,128 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../components/FavoritesContext';
-import V21blue from '../assets/vivo/Vivo V21 5G Dusk Blue.jpg';
-import V21sunset from '../assets/vivo/Vivo V21 5G Sunset Dazzle.jpg';
-import Y1s3GBblue from '../assets/vivo/Vivo Y1s 3GB Aurora Blue.jpg';
-import Y1s3GBblack from '../assets/vivo/Vivo Y1s 3GB Olive Black.jpg';
-import V20SEblack from '../assets/vivo/Vivo V20 SE Gravity Black.jpg';
-import V20SEblue from '../assets/vivo/Vivo V20 SE Oxygen Blue.jpg';
-import V20sunset from '../assets/vivo/Vivo V20  Sunset Melody.webp';
-import V20midnight from '../assets/vivo/Vivo V20 Midnight Jazz.jpg';
-import Y27sblack from '../assets/vivo/Vivo Y27S Burgundy Black.jpg';
-import Y27sblue from '../assets/vivo/Vivo Y27S Sea Blue.png';
-import Y22sblue from '../assets/vivo/Vivo Y22s  Starlit Blue.webp';
-import Y22scyan from '../assets/vivo/Vivo Y22s  Summer Cyan.webp';
-import Y17sgreen from '../assets/vivo/Vivo Y17S Forest Green.png';
-import Y17spurple from '../assets/vivo/Vivo Y17S Glitter Purple.png';
-import Y19sblack from '../assets/vivo/Vivo Y19s Glossy Black.webp';
-import Y19ssilver from '../assets/vivo/Vivo Y19s Pearl Silver.webp';
+import ultra14black from '../assets/Xiaomi/Xiaomi 14 Ultra black.webp';
+import ultra14white from '../assets/Xiaomi/Xiaomi 14 Ultra white.webp';
+import Note13proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Midnight Black.webp';
+import Note13proplusgreen from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Mint Green.webp';
+import Note13proplusblue from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Ice Blue.jpg';
+import Note13problack from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Midnight Black.jpg';
+import Note13progreen from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Mint Green.jpg';
+import Note13problue from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Ice Blue.jpg';
+import Note13black from '../assets/Xiaomi/Xiaomi Redmi Note 13  Midnight Black.jpg';
+import Note13green from '../assets/Xiaomi/Xiaomi Redmi Note 13  Mint Green.webp';
+import Note13blue from '../assets/Xiaomi/Xiaomi Redmi Note 13  Ice Blue.jpg';
+import Note13sunset from '../assets/Xiaomi/Xiaomi Redmi Note 13  Ocean Sunset.webp';
+import Note12sblack from '../assets/Xiaomi/Xiaomi Redmi Note 12S Onyx Black.jpg';
+import Note12sgreen from '../assets/Xiaomi/Xiaomi Redmi Note 12S Pearl Green.jpg';
+import Note12sblue from '../assets/Xiaomi/Xiaomi Redmi Note 12S ice blue.png';
+import Note12proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 12 pro+  Midnight Black.jpg';
+import Note12propluswhite from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Polar White.jpg';
+import Note12proplusblue from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Sky Blue.jpg';
+import Note12problack from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Onyx Black.png';
+import Note12problue from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Frosted Blue.webp';
+import Note12propurple from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Stardust Purple.jpg';
+import Note14proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ Titan Black.jpg';
+import Note14propluspurple from '../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ phantom Purple.webp';
+import Note14proplusblue from '../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ spectre Blue.webp';
 
 
-const vivoproducts = [
+const xiaomiproducts = [
   {
     id: 1,
-    name: 'Vivo V21 5G',
-    price: 'LKR 89,900 - LKR 95,000',
+    name: 'Xiaomi 14 Ultra',
+    price: 'LKR 389,900 - LKR 399,900',
     stock: true,
     images: {
-      '#57727f': V21blue,
-      '#0072B8': V21sunset
+      'black': ultra14black,
+      'white': ultra14white
     },
   },
   {
     id: 2,
-    name: 'Vivo Y1s 3GB',
-    price: 'LKR 34,900 - LKR 38,000',
+    name: 'Xiaomi Redmi Note 13 Pro+',
+    price: 'LKR 89,990 - LKR 104,990',
     stock: false,
     images: {
-      '#eaffff': Y1s3GBblue,
-      '#3B3834': Y1s3GBblack
+      'black': Note13proplusblack,
+      '#98ff98': Note13proplusgreen,
+      '#dcf3ff': Note13proplusblue
     },
   },
   {
     id: 3,
-    name: 'Vivo V20 SE',
-    price: 'LKR 80,000 - LKR 85,000',
+    name: 'Xiaomi Redmi Note 13 Pro',
+    price: 'LKR 61,490 - LKR 74,990',
     stock: true,
     images: {
-      '#454A53': V20SEblack,
-      '#90B5D4': V20SEblue
+      'black': Note13problack,
+      '#98ff98': Note13progreen,
+      '#dcf3ff': Note13problue
     },
   },
 
   {
     id: 4,
-    name: 'Vivo V20',
-    price: 'LKR 89,900 - LKR 95,000',
+    name: 'Xiaomi Redmi Note 13',
+    price: 'LKR 48,990 - LKR 59,990',
     stock: false,
     images: {
-      '#4A90E2': V20sunset,
-      '#272757': V20midnight
+      'black': Note13black,
+      '#98ff98': Note13green,
+      '#dcf3ff': Note13blue,
+      '#4a7c99':Note13sunset
     },
   },
   {
     id: 5,
-    name: 'Vivo Y27S',
-    price: 'LKR 77,990 - LKR 80,000',
+    name: 'Xiaomi Redmi Note 12S',
+    price: 'LKR 60,500 - LKR 69,500',
     stock: true,
     images: {
-      '#660033': Y27sblack,
-      '#006994': Y27sblue
+      'Black': Note12sblack,
+      '#45644A': Note12sgreen,
+      '#dcf3ff': Note12sblue
     },
   },
 
   {
     id: 6,
-    name: 'Vivo Y22s',
-    price: 'LKR 62,500 - LKR 65,000',
+    name: 'Xiaomi Redmi Note 12 Pro+',
+    price: ' LKR 104,990 - LKR 120,000',
     stock: true,
     images: {
-      '#4d5f7a': Y22sblue,
-      '#00FFFF': Y22scyan
+      '#00040D': Note12proplusblack,
+      '#eef4f4': Note12propluswhite,
+      '#87CEEB': Note12proplusblue
     },
   },
   {
     id: 7,
-    name: 'Vivo Y17S',
-    price: 'LKR 55,000 - LKR 60,000',
+    name: 'Xiaomi Redmi Note 12 Pro',
+    price: 'LKR 79,490 - LKR 89,900',
     stock: false,
     images: {
-      '#228B22': Y17sgreen,
-      '#8E3FE2': Y17spurple
+      '#353935': Note12problack,
+      '#ACD5F3': Note12problue,
+      '#6C3BAA': Note12propurple
     },
   },
   {
     id: 8,
-    name: 'Vivo Y19s',
-    price: 'LKR 49,990 - LKR 52,000',
+    name: 'Xiaomi Redmi Note 14 Pro+',
+    price: 'LKR 90,000 - LKR 120,000',
     stock: false,
     images: {
-      '#252324': Y19sblack,
-      '#E0E3E1': Y19ssilver
+      '#8d847e': Note14proplusblack,
+      '#E3E0EA': Note14propluspurple,
+      '#98bfc9': Note14proplusblue
     },
   },
 ];
 
-const VivoPage: React.FC = () => {
+const XiaomiPage: React.FC = () => {
   const [selectedColors, setSelectedColors] = useState<{ [productId: number]: string }>(
-    vivoproducts.reduce((acc, product) => {
+    xiaomiproducts.reduce((acc, product) => {
       const defaultColor = Object.keys(product.images)[0]; // Set the first color as the default
       acc[product.id] = defaultColor;
       return acc;
@@ -172,7 +188,7 @@ const VivoPage: React.FC = () => {
     navigate(`/${brand.toLowerCase()}`, { state: { brand } });
   };
 
-  const sortedProducts = [...vivoproducts].sort((a, b) => {
+  const sortedProducts = [...xiaomiproducts].sort((a, b) => {
     switch (sortOption) {
       case 'popularity':
         return b.stock === a.stock ? 0 : b.stock ? -1 : 1;
@@ -260,4 +276,4 @@ const VivoPage: React.FC = () => {
   );
 };
 
-export default VivoPage;
+export default XiaomiPage;
