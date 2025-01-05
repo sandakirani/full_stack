@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./OrderTracking.css";
 
 interface OrderData {
+  orderNumber: string;
   orderDate: string;
   name: string;
   address: string;
@@ -21,21 +22,48 @@ interface OrderHistory {
 interface OrderProps {
   isLoggedIn: boolean;
   selectedOrderNumber?: string;
-  orderData?: OrderData;
+  orderDataList: OrderData[];
   orderHistory: OrderHistory[];
 }
 
 const OrderTracking: React.FC<OrderProps> = ({
   isLoggedIn,
   selectedOrderNumber,
-  orderData,
+  orderDataList,
   orderHistory,
 }) => {
+  const [currentOrder, setCurrentOrder] = useState<OrderData | null>(null);
+
+  // Update the currently selected order when the `selectedOrderNumber` changes
+  useEffect(() => {
+    if (selectedOrderNumber) {
+      const orderDetails = orderDataList.find(
+        (order) => order.orderNumber === selectedOrderNumber
+      );
+      setCurrentOrder(orderDetails || null);
+    } else {
+      setCurrentOrder(null); // Reset if no selectedOrderNumber
+    }
+  }, [selectedOrderNumber, orderDataList]);
+
+  // Handle order selection from the history
+  const handleOrderClick = (orderNumber: string) => {
+    const orderDetails = orderDataList.find(
+      (order) => order.orderNumber === orderNumber
+    );
+    setCurrentOrder(orderDetails || null);
+  };
+
   if (!isLoggedIn) {
     return (
       <div className="order-tracking">
         <h1>Track Your Order</h1>
-        <button className="popup" onClick={() => window.location.href = '/login'}>Please login to view your orders.</button>
+        <button
+          className="popup"
+          onClick={() => (window.location.href = "/login")}
+        >
+          Please login to view your orders.
+        </button>
       </div>
     );
   }
@@ -43,88 +71,114 @@ const OrderTracking: React.FC<OrderProps> = ({
   return (
     <div className="order-tracking">
       <h1>Track Your Order</h1>
-      {selectedOrderNumber && orderData ? (
-        <div>
 
-        <div className="order-history">
-          <p><strong>Order History:</strong></p>
-          <table>
+      {/* Order History Table */}
+      <div className="order-history">
+        <p>
+          <strong>Order History:</strong>
+        </p>
+        <table className="order-history-table">
+          <thead>
+            <tr>
+              <th>Order Number</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
             {orderHistory.map((order, index) => (
-              <tr className="select-order" key={index}>
-                <td>Order Number: {order.orderNumber}</td> 
+              <tr
+                className="select-order"
+                key={index}
+                onClick={() => handleOrderClick(order.orderNumber)}
+              >
+                <td>{order.orderNumber}</td>
                 <td className="status-column">{order.deliveryStatus}</td>
               </tr>
             ))}
-          </table>
-        </div>
+          </tbody>
+        </table>
+      </div>
 
-          <div className="order-details">
+      {/* Order Details Section */}
+      {currentOrder && (
+        <div className="order-details">
           <table className="details-table">
             <tbody>
               <tr>
-                <td className="wide-column"><strong>Order Number:</strong></td>
-                <td>{selectedOrderNumber}</td>
-              </tr>
-              <tr>
-                <td className="wide-column"><strong>Order Date:</strong></td>
-                <td>{orderData.orderDate}</td>
-              </tr>
-              <tr>
-                <td className="wide-column"><strong>Name:</strong></td>
-                <td>{orderData.name}</td>
-              </tr>
-              <tr>
-                <td className="wide-column"><strong>Address:</strong></td>
-                <td>{orderData.address}</td>
-              </tr>
-              <tr>
-                <td className="wide-column"><strong>Total Amount:</strong></td>
-                <td>{orderData.totalAmount}</td>
-              </tr>
-              <tr>
-                <td className="wide-column"><strong>Delivery Method:</strong></td>
-                <td>{orderData.deliveryMethod}</td>
-              </tr>
-              <tr>
-                <td className="wide-column"><strong>Payment Method:</strong></td>
-                <td>{orderData.paymentMethod}</td>
-              </tr>
-              <tr>
-                <td className="wide-column"><strong>Order Status:</strong></td>
-                <td>{orderData.orderStatus}</td>
-              </tr>
-              <tr>
-                <td className="wide-column"><strong>Order Status History:</strong></td>
-                <td>
-                  <table className="order-status-history">
-                  {orderData.orderStatusHistory.map((history, index) => (
-                  <tr key={index}>
-                    <td className="wide-column">{history.status}:</td> 
-                    <td>{history.date}</td>
-                  </tr>
-                ))}
-                  </table>
+                <td className="wide-column">
+                  <strong>Order Number:</strong>
                 </td>
+                <td>{currentOrder.orderNumber}</td>
               </tr>
               <tr>
-                <td className="wide-column"><strong>Delivery Date:</strong></td>
-                <td>{orderData.deliveryDate}</td>
+                <td className="wide-column">
+                  <strong>Order Date:</strong>
+                </td>
+                <td>{currentOrder.orderDate}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Name:</strong>
+                </td>
+                <td>{currentOrder.name}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Address:</strong>
+                </td>
+                <td>{currentOrder.address}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Total Amount:</strong>
+                </td>
+                <td>{currentOrder.totalAmount}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Delivery Method:</strong>
+                </td>
+                <td>{currentOrder.deliveryMethod}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Payment Method:</strong>
+                </td>
+                <td>{currentOrder.paymentMethod}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Order Status:</strong>
+                </td>
+                <td>{currentOrder.orderStatus}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Delivery Date:</strong>
+                </td>
+                <td>{currentOrder.deliveryDate}</td>
               </tr>
             </tbody>
           </table>
+          <div>
+            <strong>Order Status History:</strong>
+            <table className="status-history-table">
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentOrder.orderStatusHistory.map((history, index) => (
+                  <tr key={index}>
+                    <td>{history.status}</td>
+                    <td>{history.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
-      ) : (
-        <div className="order-history">
-          <p><strong>Order History:</strong></p>
-          <table>
-            {orderHistory.map((order, index) => (
-              <tr className="select-order" key={index}>
-                <td>Order Number: {order.orderNumber}</td> 
-                <td className="status-column">{order.deliveryStatus}</td>
-              </tr>
-            ))}
-          </table>
         </div>
       )}
     </div>
