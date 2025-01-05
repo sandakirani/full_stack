@@ -1,0 +1,148 @@
+.product-page{
+    background-color: white;
+    color:black;
+    padding: 20px;
+}
+.breadcrumb1{
+  margin: 30px;
+}
+.breadcrumb1 a{
+  color:black;
+}
+.heart-icon2{
+  margin-left: 1300px;
+  font-size: 30px;
+  margin-top:-40px;
+}
+.productname{
+    margin-left: 800px;
+    margin-top:10px;
+    font-size: 40px;
+}
+
+.productprice{
+    margin-left: 800px;
+    font-size: 20px;
+}
+.out-of-stock1{
+  color:red;
+}
+
+.product-image1{
+    width: 600px;
+    height: 700px;
+    margin-left:50px;
+}
+.Colors{
+    margin-left: 800px;
+    margin-top: -650px; 
+}
+.color-selection{
+    margin-left: 800px;
+}
+.color-option{
+  display: inline-block;
+  margin:15px;
+  cursor: pointer;
+}
+.storage{
+    margin-left: 800px;
+    margin-top:20px;
+}
+.storage-options {
+  display: flex; /* Use flexbox for horizontal alignment */
+  gap: 10px; 
+  margin-top: 10px; 
+  margin-left: 800px; 
+}
+
+.storage-option-btn {
+  padding: 10px 20px;
+  background-color: white; 
+  border: 1px solid black; /* Add border */
+  border-radius: 5px; /* Optional rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease;/* Add hover transition */
+  color:black; 
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+}
+
+.storage-option-btn:hover {
+  background-color: #e0e0e0; /* Change background on hover */
+  border:2px solid #16263E;
+}
+
+.storage-option-btn.selected {
+  background-color: #16263E; /* Highlight selected button */
+  color: white; /* Change text color for selected button */
+  border-color: black; /* Optional border color change */
+}
+
+  
+  button:hover {
+    background-color: #e0e0e0;
+  }
+  .quantity{
+    margin-left: 800px;
+    margin-top:20px;
+  }
+  .quantity-selector {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 800px;
+    gap:10px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .quantity-btn {
+    padding: 5px 15px;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+    color:black;
+    font-weight: bold;
+  }
+  
+  .quantity-btn:hover {
+    background-color: #16263E;
+    color:white;
+    border :2px solid black;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    margin-left: 800px;
+  }
+  
+  .add-to-cart-btn, .buy-now-btn {
+    padding: 10px 20px;
+    background-color: #304566;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family:'Caladea', serif;
+
+  }
+  
+  .add-to-cart-btn:hover, .buy-now-btn:hover {
+    background-color: #0056b3;
+  }
+  .description{
+    margin-left: 800px;
+    margin-top:30px;
+  }
+  .des1{
+    margin-left: 800px;
+  }
+  .rear{
+    margin-left:30px;
+  }
