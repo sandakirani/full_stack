@@ -6,22 +6,21 @@ import samsung from '../assets/logo/samsung.png';
 import pixel from '../assets/logo/pixel.png';
 import xiaomi from '../assets/logo/xiaomi.webp';
 import vivo from '../assets/logo/vivo.png';
-import all from '../assets/logo/all_phones.webp';
 
 const brands = [
-  { image: apple, route: '/apple' },
-  { image: samsung, route: '/samsung' },
-  { image: pixel, route: '/pixel' },
-  { image: xiaomi, route: '/xiaomi' },
-  { image: vivo, route: '/vivo' },
-  { image: all, route: '/' },
+  { name: 'Apple', image: apple, route: '/apple' },
+  { name: 'Samsung', image: samsung, route: '/samsung' },
+  { name: 'Pixel', image: pixel, route: '/pixel' },
+  { name: 'Xiaomi', image: xiaomi, route: '/xiaomi' },
+  { name: 'Vivo', image: vivo, route: '/vivo' },
 ];
 
 const BrandSection: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleBrandClick = (route: string) => {
-    navigate(route);
+  // Handle brand click and navigate to the respective route
+  const handleBrandClick = (brand: { name: string; route: string }) => {
+    navigate(brand.route, { state: { brand: brand.name } });
   };
 
   return (
@@ -32,9 +31,13 @@ const BrandSection: React.FC = () => {
           <div
             key={index}
             className="brand-item"
-            onClick={() => handleBrandClick(brand.route)}
+            onClick={() => handleBrandClick(brand)}
           >
-            <img src={brand.image}  className="brand-logo" />
+            <img
+              src={brand.image}
+              alt={`${brand.name} Logo`}
+              className="brand-logo"
+            />
           </div>
         ))}
       </div>

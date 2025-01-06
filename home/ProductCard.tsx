@@ -3,7 +3,7 @@ import './ProductCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
-import { useFavorites } from '../components//FavoritesContext'; // Import the custom hook
+import { useFavorites } from '../components/FavoritesContext'; // Import the custom hook
 
 interface ProductCardProps {
   name: string;
