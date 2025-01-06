@@ -58,12 +58,8 @@ const OrderTracking: React.FC<OrderProps> = ({
     return (
       <div className="order-tracking">
         <h1>Track Your Order</h1>
-        <button
-          className="popup"
-          onClick={() => (window.location.href = "/login")}
-        >
-          Please login to view your orders.
-        </button>
+        <p className="popup">Please <a className="login-redirect" href="./login">login</a> to view your orders.</p>
+  
       </div>
     );
   }
@@ -77,13 +73,7 @@ const OrderTracking: React.FC<OrderProps> = ({
         <p>
           <strong>Order History:</strong>
         </p>
-        <table className="order-history-table">
-          <thead>
-            <tr>
-              <th>Order Number</th>
-              <th>Status</th>
-            </tr>
-          </thead>
+        <table>
           <tbody>
             {orderHistory.map((order, index) => (
               <tr
@@ -153,6 +143,27 @@ const OrderTracking: React.FC<OrderProps> = ({
                 <td>{currentOrder.orderStatus}</td>
               </tr>
               <tr>
+                <td><strong>Order Status History:</strong></td>
+                <td>
+                <table>
+                  <thead>
+                   <tr>
+                     <th>Status</th>
+                     <th>Date</th>
+                   </tr>
+                  </thead>
+                  <tbody>
+                   {currentOrder.orderStatusHistory.map((history, index) => (
+                      <tr key={index}>
+                        <td>{history.status}</td>
+                        <td>{history.date}</td>
+                      </tr>
+                   ))}
+                 </tbody>
+               </table>
+                </td>
+              </tr>
+              <tr>
                 <td className="wide-column">
                   <strong>Delivery Date:</strong>
                 </td>
@@ -160,25 +171,7 @@ const OrderTracking: React.FC<OrderProps> = ({
               </tr>
             </tbody>
           </table>
-          <div>
-            <strong>Order Status History:</strong>
-            <table className="status-history-table">
-              <thead>
-                <tr>
-                  <th>Status</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentOrder.orderStatusHistory.map((history, index) => (
-                  <tr key={index}>
-                    <td>{history.status}</td>
-                    <td>{history.date}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          
         </div>
       )}
     </div>
@@ -186,3 +179,5 @@ const OrderTracking: React.FC<OrderProps> = ({
 };
 
 export default OrderTracking;
+
+
