@@ -17,13 +17,17 @@ import V20SEblue from '../assets/vivo/Vivo V20 SE Oxygen Blue.jpg';
 import V20sunset from '../assets/vivo/Vivo V20  Sunset Melody.webp';
 import V20midnight from '../assets/vivo/Vivo V20 Midnight Jazz.jpg';
 import Y27sblack from '../assets/vivo/Vivo Y27S Burgundy Black.jpg';
-import Y27sblue from '../assets/vivo/Vivo Y27S Sea Blue.png';
-import Y22sblue from '../assets/vivo/Vivo Y22s  Starlit Blue.webp';
-import Y22scyan from '../assets/vivo/Vivo Y22s  Summer Cyan.webp';
+import Y27sgreen from '../assets/vivo/Vivo Y27S Garden Green.png';
+import Y22sblue from '../assets/vivo/Vivo Y22s  Starlit Blue.jpg';
+import Y22scyan from '../assets/vivo/Vivo Y22s  Summer Cyan.jpg';
 import Y17sgreen from '../assets/vivo/Vivo Y17S Forest Green.png';
 import Y17spurple from '../assets/vivo/Vivo Y17S Glitter Purple.png';
-import Y19sblack from '../assets/vivo/Vivo Y19s Glossy Black.webp';
-import Y19ssilver from '../assets/vivo/Vivo Y19s Pearl Silver.webp';
+import Y19sblack from '../assets/vivo/Vivo Y19s Glossy Black.jpg';
+import Y19ssilver from '../assets/vivo/Vivo Y19s Pearl Silver.jpg';
+import V295Gblack from '../assets/vivo/Vivo V29 5G Forest Black.jpg';
+import V295Gmagic from '../assets/vivo/Vivo V29 5G Magic Maroon.jpeg';
+import V295Gpink from '../assets/vivo/Vivo V29 5G Rose Pink.jpg';
+import V295Gice from '../assets/vivo/Vivo V29 5G ice Creek Blue.jpg';
 
 
 const vivoproducts = [
@@ -75,7 +79,7 @@ const vivoproducts = [
     stock: true,
     images: {
       '#660033': Y27sblack,
-      '#006994': Y27sblue
+      '#4CAF50': Y27sgreen
     },
   },
 
@@ -107,6 +111,18 @@ const vivoproducts = [
     images: {
       '#252324': Y19sblack,
       '#E0E3E1': Y19ssilver
+    },
+  },
+  {
+    id: 9,
+    name: 'Vivo V29 5G',
+    price: 'LKR 100,000 - LKR 130,000',
+    stock: false,
+    images: {
+      '#4D4841': V295Gblack,
+      '#800000': V295Gmagic,
+      '#F7879A': V295Gpink,
+      '#368BC1': V295Gice
     },
   },
 ];
@@ -142,18 +158,18 @@ const VivoPage: React.FC = () => {
     }));
   };
 
- 
+
   const handleFavoriteClick = (productId: number) => {
     console.log(`Clicked product ID: ${productId}`);
     console.log(`Is favorited before click: ${favorites[productId] === 1}`);
-  
+
     const isFavorited = favorites[productId] === 1;
-  
+
     setFavorites((prevFavorites) => ({
       ...prevFavorites,
       [productId]: isFavorited ? 0 : 1,
     }));
-  
+
     if (isFavorited) {
       console.log('Decrementing favorites count');
       decrementFavorites();
@@ -162,8 +178,8 @@ const VivoPage: React.FC = () => {
       incrementFavorites();
     }
   };
-  
-  
+
+
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOption(e.target.value);
   };
@@ -171,7 +187,9 @@ const VivoPage: React.FC = () => {
   const handleNavigation = (brand: string) => {
     navigate(`/${brand.toLowerCase()}`, { state: { brand } });
   };
-
+  const handleImageClick = (productId: number) => {
+    navigate(`/vivoProducts/${productId}`); 
+  };
   const sortedProducts = [...vivoproducts].sort((a, b) => {
     switch (sortOption) {
       case 'popularity':
@@ -188,7 +206,7 @@ const VivoPage: React.FC = () => {
       <Navbar />
       <div className="breadcrumb">
         <Link to="/home">Home</Link> {currentBrand !== 'Home' && ` > `}
-        {currentBrand !== 'Home' && <Link to="/apple"><strong>{currentBrand}</strong></Link>}
+        {currentBrand !== 'Home' && <Link to="/vivo"><strong>{currentBrand}</strong></Link>}
       </div>
       <div className="brand-buttons">
         <button onClick={() => handleNavigation('Apple')} className="brand-button">
@@ -206,12 +224,10 @@ const VivoPage: React.FC = () => {
         <button onClick={() => handleNavigation('Vivo')} className="brand-button">
           Vivo
         </button>
-        <button onClick={() => handleNavigation('Allphones')} className="brand-button">
-          All phones
-        </button>
+
       </div>
-      <h2 className='brandname'>Apple</h2>
-      
+      <h2 className='brandname'>Vivo</h2>
+
       <div className="sort-container">
         <label htmlFor="sort">Sort by:</label>
         <select className="select" id="sort" value={sortOption} onChange={handleSortChange}>
@@ -224,9 +240,11 @@ const VivoPage: React.FC = () => {
         {sortedProducts.map((product) => (
           <div key={product.id} className="product">
             <img
-              src={product.images[selectedColors[product.id] as keyof typeof product.images]}
-              alt={`${product.name} in ${selectedColors[product.id]}`}
+              src={product.images[selectedColors[product.id] as keyof typeof product.images]} // Display the selected color's image
+              alt={`${product.name} image`} // Descriptive alt text
               className="product-image"
+              onClick={() => handleImageClick(product.id)} // Only pass the product.id
+              style={{ cursor: 'pointer' }}
             />
             <div className="heart-icon1" onClick={() => handleFavoriteClick(product.id)}>
               <FontAwesomeIcon
@@ -245,7 +263,7 @@ const VivoPage: React.FC = () => {
                   onClick={() => handleColorChange(product.id, color)}
                   style={{
                     backgroundColor: color.toLowerCase(),
-                    border: selectedColors[product.id] === color ? '2px solid black' : 'none',
+                    border: selectedColors[product.id] === color ? "2px solid #243653" : "2px solid black",
                     cursor: 'pointer',
                   }}
                 />
