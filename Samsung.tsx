@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import './Apple.css';
+import './Brand.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
@@ -10,27 +10,27 @@ import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../components/FavoritesContext';
 import s24ultrablack from '../assets/Samsung/samsung galaxy s24 ultra phantom black.jpg';
 import s24ultrasilver from '../assets/Samsung/samsung galaxy s24 ultra Phantom Silver.jpg';
-import s24ultragreen from '../assets/Samsung/samsung galaxy s24 ultra Phantom Green.webp';
+import s24ultragreen from '../assets/Samsung/samsung galaxy s24 ultra Phantom Green.jpg';
 import sblack from '../assets/Samsung/samsung galaxy s24 phantom black.jpg';
 import ssilver from '../assets/Samsung/Samsung Galaxy S24 Phantom Silver.jpg';
-import spink from '../assets/Samsung/Samsung Galaxy S24 Phantom Pink.jpg';
-import Zfold6black from '../assets/Samsung/Samsung Galaxy Z Fold6 Phantom Black.webp';
-import zfold6beige from '../assets/Samsung/Samsung Galaxy Z Fold6 Beige.webp';
-import zfold6Burgundy from '../assets/Samsung/Samsung Galaxy Z Fold6 Burgundy.webp';
+import syellow from '../assets/Samsung/Samsung Galaxy S24 titanium yellow .jpg';
+import Zfold6black from '../assets/Samsung/Samsung Galaxy Z Fold6 Phantom Black.jpg';
+import zfold6beige from '../assets/Samsung/Samsung Galaxy Z Fold6 Beige.jpg';
+import zfold6Burgundy from '../assets/Samsung/Samsung Galaxy Z Fold6 Burgundy.jpg';
 import zflip6mint from '../assets/Samsung/Samsung Galaxy Z Flip6 mint.jpg';
 import zflip6borapurple from '../assets/Samsung/Samsung Galaxy Z Flip6 Bora Purple.jpg';
-import zflip6cream from '../assets/Samsung/Samsung Galaxy Z Flip6 Cream.webp';
+import zflip6cream from '../assets/Samsung/Samsung Galaxy Z Flip6 Cream.jpg';
 import s23ultrablack from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Black.jpg';
 import s23ultrasilver from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Silver.jpg';
 import s23ultralavender from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom lavender.webp';
 import s23FEgraphite from '../assets/Samsung/Samsung Galaxy S23 FE Graphite.jpg';
-import s23FElavender from '../assets/Samsung/Samsung Galaxy S23 FE Lavender.webp';
-import s23FEolive from '../assets/Samsung/Samsung Galaxy S23 FE Olive.webp';
+import s23FElavender from '../assets/Samsung/Samsung Galaxy S23 FE Lavender.jpg';
+import s23FEolive from '../assets/Samsung/Samsung Galaxy S23 FE Olive.jpg';
 import A555Gblack from '../assets/Samsung/Samsung Galaxy A55 5G Awesome Black.jpg';
 import A555Gviolet from '../assets/Samsung/Samsung Galaxy A55 5G Awesome violet.jpg';
 import A555Gwhite from '../assets/Samsung/Samsung Galaxy A55 5G Awesome white.jpg';
-import M555GIcyblue from '../assets/Samsung/Samsung Galaxy M55 5G Icy Blue.webp';
-import M555GBlazing from '../assets/Samsung/Samsung Galaxy M55 5G Blazing Black.webp';
+import M555GIcyblue from '../assets/Samsung/Samsung Galaxy M55 5G Icy Blue.jpg';
+import M555GBlazing from '../assets/Samsung/Samsung Galaxy M55 5G Blazing Black.jpg';
 
 const samsungproducts = [
   {
@@ -40,7 +40,7 @@ const samsungproducts = [
     stock: true,
     images: {
       '#242725': s24ultrablack,
-      '#a3a4a': s24ultrasilver,
+      '#E3E4E5': s24ultrasilver,
       '#dce4d7': s24ultragreen
     },
   },
@@ -52,7 +52,7 @@ const samsungproducts = [
     images: {
       '#242725': sblack,
       '#a3a4a': ssilver,
-      '#E7D9DB': spink
+      '#FAEE4D': syellow
     },
   },
   {
@@ -85,7 +85,7 @@ const samsungproducts = [
     stock: true,
     images: {
       'Black': s23ultrablack,
-      '#C0C0C0': s23ultrasilver,
+      '#C7C9D3': s23ultrasilver,
       '#E6E6FA': s23ultralavender
     },
   },
@@ -107,9 +107,9 @@ const samsungproducts = [
     price: 'LKR 90,000 - LKR 120,000',
     stock: false,
     images: {
-      'Blue': A555Gblack,
-      '#7F00FF': A555Gviolet,
-      'Yellow': A555Gwhite
+      'Black': A555Gblack,
+      '#8F00FF': A555Gviolet,
+      'White': A555Gwhite
     },
   },
   {
@@ -118,9 +118,9 @@ const samsungproducts = [
     price: 'LKR 80,000 - LKR 100,000',
     stock: true,
     images: {
-      'Blue': A555Gblack,
-      '#7F00FF': A555Gviolet,
-      'white': A555Gwhite
+      'Black': A555Gblack,
+      '#8F00FF': A555Gviolet,
+      'White': A555Gwhite
     },
   },
   {
@@ -130,7 +130,7 @@ const samsungproducts = [
     stock: true,
     images: {
       '#739BD0': M555GIcyblue,
-      '#FF6700': M555GBlazing
+      '#0C090A': M555GBlazing
     },
   },
 ];
@@ -195,6 +195,9 @@ const SamsungPage: React.FC = () => {
   const handleNavigation = (brand: string) => {
     navigate(`/${brand.toLowerCase()}`, { state: { brand } });
   };
+  const handleImageClick = (productId: number) => {
+    navigate(`/samsungProducts/${productId}`); // Navigate to a unique route for the product
+  };
 
   const sortedProducts = [...samsungproducts].sort((a, b) => {
     switch (sortOption) {
@@ -230,11 +233,9 @@ const SamsungPage: React.FC = () => {
         <button onClick={() => handleNavigation('Vivo')} className="brand-button">
           Vivo
         </button>
-        <button onClick={() => handleNavigation('Allphones')} className="brand-button">
-          All phones
-        </button>
+        
       </div>
-      <h2 className='brandname'>Apple</h2>
+      <h2 className='brandname'>Samsung</h2>
       
       <div className="sort-container">
         <label htmlFor="sort">Sort by:</label>
@@ -248,9 +249,11 @@ const SamsungPage: React.FC = () => {
         {sortedProducts.map((product) => (
           <div key={product.id} className="product">
             <img
-              src={product.images[selectedColors[product.id] as keyof typeof product.images]}
-              alt={`${product.name} in ${selectedColors[product.id]}`}
+              src={product.images[selectedColors[product.id] as keyof typeof product.images]} // Display the selected color's image
+              alt={`${product.name} image`} // Descriptive alt text
               className="product-image"
+              onClick={() => handleImageClick(product.id)} // Only pass the product.id
+              style={{ cursor: 'pointer' }}
             />
             <div className="heart-icon1" onClick={() => handleFavoriteClick(product.id)}>
               <FontAwesomeIcon
@@ -269,7 +272,7 @@ const SamsungPage: React.FC = () => {
                   onClick={() => handleColorChange(product.id, color)}
                   style={{
                     backgroundColor: color.toLowerCase(),
-                    border: selectedColors[product.id] === color ? '2px solid black' : 'none',
+                    border: selectedColors[product.id] === color ? "2px solid #243653" : "2px solid black",
                     cursor: 'pointer',
                   }}
                 />
