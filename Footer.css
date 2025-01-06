@@ -5,6 +5,8 @@
     font-family: Arial, sans-serif;
     opacity: 88%;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
   
   .footer-content {
@@ -12,7 +14,10 @@
     justify-content: space-between;
     padding: 20px;
     text-align: left;
+    flex-grow: 1;
   }
+  
+  
   
   .contact-info {
     width: 30%;
@@ -100,11 +105,13 @@
     border-top: 1px solid #16263E;
     color:white;
     background-color: #16263E;
-    margin-bottom: -20px;
-    width:1500px;
-    margin-left:-20px;
+    margin-bottom: -40px;
+    margin-left:-70px;
     height:2px;
     font-size: 10px;
+    position: relative;
+    padding: 10px;
+    width: 1500px;
   }
-  
+
   
