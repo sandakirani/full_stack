@@ -8,16 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../components/FavoritesContext';
-import ultra14black from '../assets/Xiaomi/Xiaomi 14 Ultra black.webp';
-import ultra14white from '../assets/Xiaomi/Xiaomi 14 Ultra white.webp';
-import Note13proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Midnight Black.webp';
-import Note13proplusgreen from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Mint Green.webp';
+import ultra14black from '../assets/Xiaomi/Xiaomi 14 Ultra black.jpg';
+import ultra14white from '../assets/Xiaomi/Xiaomi 14 Ultra white.jpg';
+import Note13proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Midnight Black.jpg';
+import Note13proplusgreen from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Mint Green.jpg';
 import Note13proplusblue from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Ice Blue.jpg';
 import Note13problack from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Midnight Black.jpg';
-import Note13progreen from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Mint Green.jpg';
-import Note13problue from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Ice Blue.jpg';
+import Note13proWhite from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Arctic White.jpg';
+import Note13propurple from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Lavender Purple.jpg';
 import Note13black from '../assets/Xiaomi/Xiaomi Redmi Note 13  Midnight Black.jpg';
-import Note13green from '../assets/Xiaomi/Xiaomi Redmi Note 13  Mint Green.webp';
+import Note13green from '../assets/Xiaomi/Xiaomi Redmi Note 13  Mint Green.jpg';
 import Note13blue from '../assets/Xiaomi/Xiaomi Redmi Note 13  Ice Blue.jpg';
 import Note13sunset from '../assets/Xiaomi/Xiaomi Redmi Note 13  Ocean Sunset.webp';
 import Note12sblack from '../assets/Xiaomi/Xiaomi Redmi Note 12S Onyx Black.jpg';
@@ -27,8 +27,11 @@ import Note12proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 12 pro+  Midn
 import Note12propluswhite from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Polar White.jpg';
 import Note12proplusblue from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Sky Blue.jpg';
 import Note12problack from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Onyx Black.png';
-import Note12problue from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Frosted Blue.webp';
+import Note12problue from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Frosted Blue.jpg';
 import Note12propurple from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Stardust Purple.jpg';
+import Note14proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ Titan Black.jpg';
+import Note14propluspurple from '../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ phantom Purple.jpg';
+import Note14proplusblue from '../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ spectre Blue.jpg';
 
 
 const xiaomiproducts = [
@@ -38,8 +41,8 @@ const xiaomiproducts = [
     price: 'LKR 389,900 - LKR 399,900',
     stock: true,
     images: {
-      'black': ultra14black,
-      'white': ultra14white
+      'Black': ultra14black,
+      'White': ultra14white
     },
   },
   {
@@ -48,7 +51,7 @@ const xiaomiproducts = [
     price: 'LKR 89,990 - LKR 104,990',
     stock: false,
     images: {
-      'black': Note13proplusblack,
+      'Black': Note13proplusblack,
       '#98ff98': Note13proplusgreen,
       '#dcf3ff': Note13proplusblue
     },
@@ -59,9 +62,9 @@ const xiaomiproducts = [
     price: 'LKR 61,490 - LKR 74,990',
     stock: true,
     images: {
-      'black': Note13problack,
-      '#98ff98': Note13progreen,
-      '#dcf3ff': Note13problue
+      'Black': Note13problack,
+      '#F8F9FA': Note13proWhite,
+      '#E6E6FA': Note13propurple
     },
   },
 
@@ -71,10 +74,10 @@ const xiaomiproducts = [
     price: 'LKR 48,990 - LKR 59,990',
     stock: false,
     images: {
-      'black': Note13black,
+      'Black': Note13black,
       '#98ff98': Note13green,
       '#dcf3ff': Note13blue,
-      '#4a7c99':Note13sunset
+      '#FF7F50 ':Note13sunset
     },
   },
   {
@@ -92,7 +95,7 @@ const xiaomiproducts = [
   {
     id: 6,
     name: 'Xiaomi Redmi Note 12 Pro+',
-    price: ' LKR 104,990 - LKR 120,000',
+    price: 'LKR 104,990 - LKR 120,000',
     stock: true,
     images: {
       '#00040D': Note12proplusblack,
@@ -109,6 +112,17 @@ const xiaomiproducts = [
       '#353935': Note12problack,
       '#ACD5F3': Note12problue,
       '#6C3BAA': Note12propurple
+    },
+  },
+  {
+    id: 8,
+    name: 'Xiaomi Redmi Note 14 Pro+',
+    price: 'LKR 90,000 - LKR 120,000',
+    stock: false,
+    images: {
+      'Black': Note14proplusblack,
+      '#E3E0EA': Note14propluspurple,
+      '#98bfc9': Note14proplusblue
     },
   },
 ];
@@ -173,6 +187,9 @@ const XiaomiPage: React.FC = () => {
   const handleNavigation = (brand: string) => {
     navigate(`/${brand.toLowerCase()}`, { state: { brand } });
   };
+  const handleImageClick = (productId: number) => {
+    navigate(`/xiaomiProducts/${productId}`); // Navigate to a unique route for the product
+  };
 
   const sortedProducts = [...xiaomiproducts].sort((a, b) => {
     switch (sortOption) {
@@ -190,7 +207,7 @@ const XiaomiPage: React.FC = () => {
       <Navbar />
       <div className="breadcrumb">
         <Link to="/home">Home</Link> {currentBrand !== 'Home' && ` > `}
-        {currentBrand !== 'Home' && <Link to="/apple"><strong>{currentBrand}</strong></Link>}
+        {currentBrand !== 'Home' && <Link to="/xiaomi"><strong>{currentBrand}</strong></Link>}
       </div>
       <div className="brand-buttons">
         <button onClick={() => handleNavigation('Apple')} className="brand-button">
@@ -208,11 +225,9 @@ const XiaomiPage: React.FC = () => {
         <button onClick={() => handleNavigation('Vivo')} className="brand-button">
           Vivo
         </button>
-        <button onClick={() => handleNavigation('Allphones')} className="brand-button">
-          All phones
-        </button>
+        
       </div>
-      <h2 className='brandname'>Apple</h2>
+      <h2 className='brandname'>Xiaomi</h2>
       
       <div className="sort-container">
         <label htmlFor="sort">Sort by:</label>
@@ -225,10 +240,12 @@ const XiaomiPage: React.FC = () => {
       <div className="product-grid">
         {sortedProducts.map((product) => (
           <div key={product.id} className="product">
-            <img
-              src={product.images[selectedColors[product.id] as keyof typeof product.images]}
-              alt={`${product.name} in ${selectedColors[product.id]}`}
+           <img
+              src={product.images[selectedColors[product.id] as keyof typeof product.images]} // Display the selected color's image
+              alt={`${product.name} image`} // Descriptive alt text
               className="product-image"
+              onClick={() => handleImageClick(product.id)} // Only pass the product.id
+              style={{ cursor: 'pointer' }}
             />
             <div className="heart-icon1" onClick={() => handleFavoriteClick(product.id)}>
               <FontAwesomeIcon
@@ -247,8 +264,8 @@ const XiaomiPage: React.FC = () => {
                   onClick={() => handleColorChange(product.id, color)}
                   style={{
                     backgroundColor: color.toLowerCase(),
-                    border: selectedColors[product.id] === color ? '2px solid black' : 'none',
-                    cursor: 'pointer',
+                  border: selectedColors[product.id] === color ? "2px solid #243653" : "2px solid black",
+                  cursor: 'pointer',
                   }}
                 />
               ))}
