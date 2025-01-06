@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import './Apple.css';
+import './Brand.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
@@ -10,9 +10,9 @@ import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from '../components/FavoritesContext';
 import pro9XLobsidian from '../assets/Pixel/Google Pixel 9 Pro XL Obsidian.jpg';
 import pro9XLporcelain from '../assets/Pixel/Google Pixel 9 Pro XL Porcelain.jpg';
-import pro9XLhazel from '../assets/Pixel/Google Pixel 9 Pro XL Hazel.webp';
+import pro9XLhazel from '../assets/Pixel/Google Pixel 9 Pro XL Hazel.jpg';
 import pro9FoldObsidian from '../assets/Pixel/Google Pixel 9 Pro Fold Obsidian.jpg';
-import pro9Foldporcelain from '../assets/Pixel/Google Pixel 9 Pro Fold Porcelain.avif';
+import pro9Foldporcelain from '../assets/Pixel/Google Pixel 9 Pro Fold Porcelain.jpg';
 import pro8obsidian from '../assets/Pixel/Google Pixel 8 Pro Obsidian.jpg';
 import pro8bay from '../assets/Pixel/Google Pixel 8 Pro bay.jpg';
 import Lemongrass8 from '../assets/Pixel/Google Pixel 8 Lemongrass.jpg';
@@ -35,7 +35,7 @@ const pixelproducts = [
     images: {
       '#71627a': pro9XLobsidian,
       '#e9e0d5': pro9XLporcelain,
-      '#C8B575': pro9XLhazel
+      '#D4CEC3': pro9XLhazel
     },
   },
   {
@@ -46,7 +46,7 @@ const pixelproducts = [
     images: {
       '#71627a': pro9XLobsidian,
       '#e9e0d5': pro9XLporcelain,
-      '#C8B575': pro9XLhazel
+      '#D4CEC3': pro9XLhazel
     },
   },
   {
@@ -57,7 +57,7 @@ const pixelproducts = [
     images: {
       '#71627a': pro9XLobsidian,
       '#e9e0d5': pro9XLporcelain,
-      '#C8B575': pro9XLhazel
+      '#D4CEC3': pro9XLhazel
     },
   },
 
@@ -78,7 +78,7 @@ const pixelproducts = [
     stock: true,
     images: {
       '#71627a': pro8obsidian,
-      '#67412B': pro8bay
+      '#576D72': pro8bay
     },
   },
 
@@ -90,7 +90,7 @@ const pixelproducts = [
     images: {
       '#969580': Lemongrass8,
       '#71627a': Obsidian8,
-      '#EFF2F3': porcelain8
+      '#F2F2F2': porcelain8
     },
   },
   {
@@ -177,6 +177,9 @@ const PixelPage: React.FC = () => {
   const handleNavigation = (brand: string) => {
     navigate(`/${brand.toLowerCase()}`, { state: { brand } });
   };
+  const handleImageClick = (productId: number) => {
+    navigate(`/pixelProducts/${productId}`); // Navigate to a unique route for the product
+  };
 
   const sortedProducts = [...pixelproducts].sort((a, b) => {
     switch (sortOption) {
@@ -212,11 +215,9 @@ const PixelPage: React.FC = () => {
         <button onClick={() => handleNavigation('Vivo')} className="brand-button">
           Vivo
         </button>
-        <button onClick={() => handleNavigation('Allphones')} className="brand-button">
-          All phones
-        </button>
+        
       </div>
-      <h2 className='brandname'>Apple</h2>
+      <h2 className='brandname'>Pixel</h2>
       
       <div className="sort-container">
         <label htmlFor="sort">Sort by:</label>
@@ -230,9 +231,11 @@ const PixelPage: React.FC = () => {
         {sortedProducts.map((product) => (
           <div key={product.id} className="product">
             <img
-              src={product.images[selectedColors[product.id] as keyof typeof product.images]}
-              alt={`${product.name} in ${selectedColors[product.id]}`}
+              src={product.images[selectedColors[product.id] as keyof typeof product.images]} // Display the selected color's image
+              alt={`${product.name} image`} // Descriptive alt text
               className="product-image"
+              onClick={() => handleImageClick(product.id)} // Only pass the product.id
+              style={{ cursor: 'pointer' }}
             />
             <div className="heart-icon1" onClick={() => handleFavoriteClick(product.id)}>
               <FontAwesomeIcon
@@ -246,15 +249,15 @@ const PixelPage: React.FC = () => {
             <div className="color-selector">
               {Object.keys(product.images).map((color) => (
                 <div
-                  key={color}
-                  className={`color-circle ${color.toLowerCase().replace(' ', '-')}`}
-                  onClick={() => handleColorChange(product.id, color)}
-                  style={{
-                    backgroundColor: color.toLowerCase(),
-                    border: selectedColors[product.id] === color ? '2px solid black' : 'none',
-                    cursor: 'pointer',
-                  }}
-                />
+                key={color}
+                className={`color-circle ${color.toLowerCase().replace(' ', '-')}`}
+                onClick={() => handleColorChange(product.id, color)}
+                style={{
+                  backgroundColor: color.toLowerCase(),
+                  border: selectedColors[product.id] === color ? "2px solid #243653" : "2px solid black",
+                  cursor: 'pointer',
+                }}
+              />
               ))}
             </div>
           </div>
