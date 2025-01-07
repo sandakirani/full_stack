@@ -1,103 +1,182 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: url("../src/assets/Background.jpeg") no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
+import React, { useState, useEffect } from "react";
+import "./OrderTracking.css";
+
+interface OrderData {
+  orderNumber: string;
+  orderDate: string;
+  name: string;
+  address: string;
+  totalAmount: string;
+  deliveryMethod: string;
+  paymentMethod: string;
+  orderStatus: string;
+  orderStatusHistory: { status: string; date: string }[];
+  deliveryDate: string;
 }
 
-.order-tracking {
-  padding: 20px;
+interface OrderHistory {
+  orderNumber: string;
+  deliveryStatus: string;
 }
 
-h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
-  margin-left: 10%;
+interface OrderProps {
+  isLoggedIn: boolean;
+  selectedOrderNumber?: string;
+  orderDataList: OrderData[];
+  orderHistory: OrderHistory[];
 }
 
-.popup {
-  width: 80%;
-  margin: 15px auto;
-  background-color: rgba(242, 94, 94, 0.682);
-  padding: 20px;
-  border-radius: 10px;
-}
+const OrderTracking: React.FC<OrderProps> = ({
+  isLoggedIn,
+  selectedOrderNumber,
+  orderDataList,
+  orderHistory,
+}) => {
+  const [currentOrder, setCurrentOrder] = useState<OrderData | null>(null);
 
-.login-redirect {
-  color: #fff;
-}
+  // Update the currently selected order when the `selectedOrderNumber` changes
+  useEffect(() => {
+    if (selectedOrderNumber) {
+      const orderDetails = orderDataList.find(
+        (order) => order.orderNumber === selectedOrderNumber
+      );
+      setCurrentOrder(orderDetails || null);
+    } else {
+      setCurrentOrder(null); // Reset if no selectedOrderNumber
+    }
+  }, [selectedOrderNumber, orderDataList]);
 
-.login-redirect:hover {
-  color: rgb(250, 250, 112);
-}
+  // Handle order selection from the history
+  const handleOrderClick = (orderNumber: string) => {
+    const orderDetails = orderDataList.find(
+      (order) => order.orderNumber === orderNumber
+    );
+    setCurrentOrder(orderDetails || null);
+  };
 
-.order-details,
-.order-history {
-  background-color: rgba(22, 38, 62, 0.6); /* 60% opacity */
-  padding: 20px;
-  margin: 20px auto;
-  width: 80%;
-  border-radius: 10px;
-  border-color: #fff;
-  border-width: 1px;
-  border-style: groove;
-}
+  if (!isLoggedIn) {
+    return (
+      <div className="order-tracking">
+        <h1>Track Your Order</h1>
+        <p className="popup">Please <a className="login-redirect" href="./login">login</a> to view your orders.</p>
+  
+      </div>
+    );
+  }
 
-p {
-  margin: 10px 0;
-}
+  return (
+    <div className="order-tracking">
+      <h1>Track Your Order</h1>
 
-.order-history table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  border-width: 0;
-}
+      {/* Order History Table */}
+      <div className="order-history">
+        <p>
+          <strong>Order History:</strong>
+        </p>
+        <table>
+          <tbody>
+            {orderHistory.map((order, index) => (
+              <tr
+                className="select-order"
+                key={index}
+                onClick={() => handleOrderClick(order.orderNumber)}
+              >
+                <td>{order.orderNumber}</td>
+                <td className="status-column">{order.deliveryStatus}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-th, td {
-  padding: 10px;
-  text-align: left;
-}
+      {/* Order Details Section */}
+      {currentOrder && (
+        <div className="order-details">
+          <table className="details-table">
+            <tbody>
+              <tr>
+                <td className="wide-column">
+                  <strong>Order Number:</strong>
+                </td>
+                <td>{currentOrder.orderNumber}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Order Date:</strong>
+                </td>
+                <td>{currentOrder.orderDate}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Name:</strong>
+                </td>
+                <td>{currentOrder.name}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Address:</strong>
+                </td>
+                <td>{currentOrder.address}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Total Amount:</strong>
+                </td>
+                <td>{currentOrder.totalAmount}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Delivery Method:</strong>
+                </td>
+                <td>{currentOrder.deliveryMethod}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Payment Method:</strong>
+                </td>
+                <td>{currentOrder.paymentMethod}</td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Order Status:</strong>
+                </td>
+                <td>{currentOrder.orderStatus}</td>
+              </tr>
+              <tr>
+                <td><strong>Order Status History:</strong></td>
+                <td>
+                <table>
+                  <thead>
+                   <tr>
+                     <th>Status</th>
+                     <th>Date</th>
+                   </tr>
+                  </thead>
+                  <tbody>
+                   {currentOrder.orderStatusHistory.map((history, index) => (
+                      <tr key={index}>
+                        <td>{history.status}</td>
+                        <td>{history.date}</td>
+                      </tr>
+                   ))}
+                 </tbody>
+               </table>
+                </td>
+              </tr>
+              <tr>
+                <td className="wide-column">
+                  <strong>Delivery Date:</strong>
+                </td>
+                <td>{currentOrder.deliveryDate}</td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+      )}
+    </div>
+  );
+};
 
-th {
-  color: #fff;
-}
+export default OrderTracking;
 
-.select-order:hover {
-  color: rgb(224, 245, 104);
-}
-
-.status-column {
-  text-align: right;
-}
-
-.details-table .wide-column {
-  width: 40%; 
-}
-
-.details-table {
-  width: 100%;
-}
-
-.details-table td {
-  vertical-align: top;
-}
-
-.order-status-history{
-  padding: 0;
-  margin: 0;
-}
-
-.order-status-history td {
-  vertical-align: top;
-}
-
-.clickable-row {
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.clickable-row:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
