@@ -61,7 +61,6 @@ const terms = [
     title: "Contact Information",
     content: `• If you have questions about these terms, please contact us:\n  Email: info@cellularworld.lk\n`,
   },
-
 ];
 
 const TermsConditions: React.FC = () => {
@@ -80,10 +79,10 @@ const TermsConditions: React.FC = () => {
         
       }}
     >
-      {/* Navbar */}
+      
       <Navbar />
 
-      {/* Main Content */}
+     
       <div className="terms-conditions-content">
         <h1>Terms & Conditions</h1>
         <p>
@@ -114,7 +113,7 @@ const TermsConditions: React.FC = () => {
         </div>
       </div>
 
-      {/* Footer */}
+
       <Footer />
     </div>
   );
