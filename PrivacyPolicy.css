@@ -1,0 +1,41 @@
+body {
+    width: auto;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    background-color: #02101C;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .privacy-policy-title {
+    text-align: left;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+  }
+  
+  ul {
+    margin: 10px 0 20px 20px;
+    list-style-type: disc;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  
+  p {
+    margin-bottom: 15px;
+  }
+  
