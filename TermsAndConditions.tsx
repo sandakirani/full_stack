@@ -19,7 +19,7 @@ const terms = [
   },
   {
     title: "Pricing Policy",
-    content: `• Prices listed on the website are in [currency] and include applicable taxes unless stated otherwise.\n• We reserve the right to change prices without prior notice.\n• In the event of a pricing error, we will contact you for confirmation before proceeding with the order.`,
+    content: `• Prices listed on the website are in LKR and include applicable taxes unless stated otherwise.\n• We reserve the right to change prices without prior notice.\n• In the event of a pricing error, we will contact you for confirmation before proceeding with the order.`,
   },
   {
     title: "Payment Terms",
@@ -59,7 +59,7 @@ const terms = [
   },
   {
     title: "Contact Information",
-    content: `• If you have questions about these terms, please contact us:\n  Email: info@cellularworld.lk\n`,
+    content: `• If you have questions about these terms, please contact us via email info@cellularworld.lk\n`,
   },
 ];
 
@@ -85,7 +85,7 @@ const TermsConditions: React.FC = () => {
      
       <div className="terms-conditions-content">
         <h1>Terms & Conditions</h1>
-        <p>
+        <p className="Paragraph">
           Welcome to Cellular World. By using this website, you agree to comply
           with and be bound by these terms and conditions. If you do not agree
           with any part of these terms, please discontinue use of the website
