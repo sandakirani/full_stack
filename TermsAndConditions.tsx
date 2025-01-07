@@ -9,6 +9,14 @@ const terms = [
     title: "Eligibility",
     content: `• You must be at least 18 years old to make a purchase.\n• By placing an order, you confirm that all information provided is accurate and complete.`,
   },
+  {
+    title: "Use of the Website",
+    content: `• This website and its content are intended for personal, non-commercial use.\n• Any unauthorized reproduction, distribution, or modification of the content is strictly prohibited.`,
+  },
+  {
+    title: "Product Information",
+    content: `• We make every effort to ensure product descriptions, images, and specifications are accurate. However, slight variations may occur.\n• All products are subject to availability. If a product is unavailable, we will notify you promptly and provide alternatives or a full refund.`,
+  },
 
 ];
 
