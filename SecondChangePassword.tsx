@@ -19,44 +19,30 @@ const Login: React.FC = () => {
       <img src ={logo} className="logo2"/>
       </div>
       <div className="login-container">
-        <h2>Password Reset</h2>
+        <h2>SUCCESS </h2>
         
-        {/*old password*/}
-        <div className="password-container">
-          <input 
-            type={passwordVisible ? "text" : "password"} 
-            placeholder="Old Password" 
-          />
-          <FontAwesomeIcon 
-            icon={passwordVisible ? faEyeSlash : faEye} 
-            onClick={togglePasswordVisibility} 
-            className="eye-icon"
-          />
+        <div className="successmessage">
+        <h5>Your password has been reset successfully!
+        Login with your new password.</h5>
         </div>
 
-         {/*new password*/}
+         {/*enter password*/}
         <div className="password-container">
           <input 
-            type={passwordVisible ? "text" : "password"} 
-            placeholder="New Password" 
+            type={passwordVisible ? "text" : "email"} 
+            placeholder="Enter Email" 
           />
-          <FontAwesomeIcon 
-            icon={passwordVisible ? faEyeSlash : faEye} 
-            onClick={togglePasswordVisibility} 
-            className="eye-icon"
-          />
+        
         </div>
-        <div className="instruction">
-        <h5>Your password must contain at least 8 characters, including at least one uppercase letter (A-Z), one lowercase letter (a-z), one number (0-9), and one special character (e.g., @, #, $, %).</h5>
-        </div>
+        
            <br/>
 
-        <h3>Confirm New Password </h3>
-         {/*confirm password*/}
+      
+         {/*enter password*/}
          <div className="password-container">
           <input 
             type={passwordVisible ? "text" : "password"} 
-            placeholder="New Password" 
+            placeholder="Enter Password" 
           />
           <FontAwesomeIcon 
             icon={passwordVisible ? faEyeSlash : faEye} 
@@ -65,8 +51,8 @@ const Login: React.FC = () => {
           />
         </div>
     
-        <button className="btn" onClick={() => navigate("/secondcpw")}>
-          Change my password
+        <button className="btn" onClick={() => navigate("/home")}>
+          LOGIN
         </button>
 
       </div>
