@@ -65,7 +65,7 @@ const Login: React.FC = () => {
           />
         </div>
     
-        <button className="btn" onClick={() => navigate("/home")}>
+        <button className="btn" onClick={() => navigate("/secondcpw")}>
           Change my password
         </button>
 
