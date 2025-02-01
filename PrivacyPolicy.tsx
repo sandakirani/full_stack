@@ -1,8 +1,11 @@
-import React from "react";
+import Navbar from '../Header/Navbar'; 
+import Footer from '../Footer/Footer'; 
 import "./PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
   return (
+    <>
+    <Navbar/>
     <div>
       <h1 className="privacy-policy-title">Privacy Policy</h1>
       <p>
@@ -90,7 +93,10 @@ const PrivacyPolicy = () => {
         you to review this policy periodically to stay informed.
       </p>
     </div>
+    <Footer/>
+    </>
   );
 };
 
 export default PrivacyPolicy;
+
