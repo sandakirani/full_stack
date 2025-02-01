@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Navbar from "../Header/Navbar";
+import Footer from "../Footer/Footer";
 import "./OrderTracking.css";
 
 interface OrderData {
@@ -24,6 +26,7 @@ interface OrderProps {
   selectedOrderNumber?: string;
   orderDataList: OrderData[];
   orderHistory: OrderHistory[];
+  onSelectOrder?: (orderNumber: string) => void; // Optional callback for parent
 }
 
 const OrderTracking: React.FC<OrderProps> = ({
@@ -31,6 +34,7 @@ const OrderTracking: React.FC<OrderProps> = ({
   selectedOrderNumber,
   orderDataList,
   orderHistory,
+  onSelectOrder,
 }) => {
   const [currentOrder, setCurrentOrder] = useState<OrderData | null>(null);
 
@@ -52,19 +56,35 @@ const OrderTracking: React.FC<OrderProps> = ({
       (order) => order.orderNumber === orderNumber
     );
     setCurrentOrder(orderDetails || null);
+
+    // Call the parent callback if provided
+    if (onSelectOrder) {
+      onSelectOrder(orderNumber);
+    }
   };
 
   if (!isLoggedIn) {
     return (
+      <>
+      <Navbar/>
       <div className="order-tracking">
         <h1>Track Your Order</h1>
-        <p className="popup">Please <a className="login-redirect" href="./login">login</a> to view your orders.</p>
-  
+        <p className="popup">
+          Please{" "}
+          <a className="login-redirect" href="./login">
+            login
+          </a>{" "}
+          to view your orders.
+        </p>
       </div>
+      <Footer/>
+      </>
     );
   }
 
   return (
+    <>
+    <Navbar/>
     <div className="order-tracking">
       <h1>Track Your Order</h1>
 
@@ -74,6 +94,12 @@ const OrderTracking: React.FC<OrderProps> = ({
           <strong>Order History:</strong>
         </p>
         <table>
+          <thead>
+            <tr>
+              <th>Order Number</th>
+              <th>Delivery Status</th>
+            </tr>
+          </thead>
           <tbody>
             {orderHistory.map((order, index) => (
               <tr
@@ -92,6 +118,7 @@ const OrderTracking: React.FC<OrderProps> = ({
       {/* Order Details Section */}
       {currentOrder && (
         <div className="order-details">
+          <h2>Order Details</h2>
           <table className="details-table">
             <tbody>
               <tr>
@@ -143,24 +170,28 @@ const OrderTracking: React.FC<OrderProps> = ({
                 <td>{currentOrder.orderStatus}</td>
               </tr>
               <tr>
-                <td><strong>Order Status History:</strong></td>
+                <td className="wide-column">
+                  <strong>Order Status History:</strong>
+                </td>
                 <td>
-                <table>
-                  <thead>
-                   <tr>
-                     <th>Status</th>
-                     <th>Date</th>
-                   </tr>
-                  </thead>
-                  <tbody>
-                   {currentOrder.orderStatusHistory.map((history, index) => (
-                      <tr key={index}>
-                        <td>{history.status}</td>
-                        <td>{history.date}</td>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Status</th>
+                        <th>Date</th>
                       </tr>
-                   ))}
-                 </tbody>
-               </table>
+                    </thead>
+                    <tbody>
+                      {currentOrder.orderStatusHistory.map(
+                        (history, index) => (
+                          <tr key={index}>
+                            <td>{history.status}</td>
+                            <td>{history.date}</td>
+                          </tr>
+                        )
+                      )}
+                    </tbody>
+                  </table>
                 </td>
               </tr>
               <tr>
@@ -171,10 +202,11 @@ const OrderTracking: React.FC<OrderProps> = ({
               </tr>
             </tbody>
           </table>
-          
         </div>
       )}
     </div>
+    <Footer/>
+    </>
   );
 };
 
