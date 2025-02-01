@@ -1,33 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer/Footer';
 import './Brand.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
-import { useFavorites } from '../components/FavoritesContext';
-import V21blue from '../assets/vivo/Vivo V21 5G Dusk Blue.jpg';
-import V21sunset from '../assets/vivo/Vivo V21 5G Sunset Dazzle.jpg';
-import Y1s3GBblue from '../assets/vivo/Vivo Y1s 3GB Aurora Blue.jpg';
-import Y1s3GBblack from '../assets/vivo/Vivo Y1s 3GB Olive Black.jpg';
-import V20SEblack from '../assets/vivo/Vivo V20 SE Gravity Black.jpg';
-import V20SEblue from '../assets/vivo/Vivo V20 SE Oxygen Blue.jpg';
-import V20sunset from '../assets/vivo/Vivo V20  Sunset Melody.webp';
-import V20midnight from '../assets/vivo/Vivo V20 Midnight Jazz.jpg';
-import Y27sblack from '../assets/vivo/Vivo Y27S Burgundy Black.jpg';
-import Y27sgreen from '../assets/vivo/Vivo Y27S Garden Green.png';
-import Y22sblue from '../assets/vivo/Vivo Y22s  Starlit Blue.jpg';
-import Y22scyan from '../assets/vivo/Vivo Y22s  Summer Cyan.jpg';
-import Y17sgreen from '../assets/vivo/Vivo Y17S Forest Green.png';
-import Y17spurple from '../assets/vivo/Vivo Y17S Glitter Purple.png';
-import Y19sblack from '../assets/vivo/Vivo Y19s Glossy Black.jpg';
-import Y19ssilver from '../assets/vivo/Vivo Y19s Pearl Silver.jpg';
-import V295Gblack from '../assets/vivo/Vivo V29 5G Forest Black.jpg';
-import V295Gmagic from '../assets/vivo/Vivo V29 5G Magic Maroon.jpeg';
-import V295Gpink from '../assets/vivo/Vivo V29 5G Rose Pink.jpg';
-import V295Gice from '../assets/vivo/Vivo V29 5G ice Creek Blue.jpg';
+import { useFavorites } from '../Header/FavoritesContext';
+import { useWishlist } from '../HeaderInside/WishlistContext';
+
+import V21blue from '../../assets/vivo/Vivo V21 5G Dusk Blue.jpg';
+import V21sunset from '../../assets/vivo/Vivo V21 5G Sunset Dazzle.jpg';
+import Y1s3GBblue from '../../assets/vivo/Vivo Y1s 3GB Aurora Blue.jpg';
+import Y1s3GBblack from '../../assets/vivo/Vivo Y1s 3GB Olive Black.jpg';
+import V20SEblack from '../../assets/vivo/Vivo V20 SE Gravity Black.jpg';
+import V20SEblue from '../../assets/vivo/Vivo V20 SE Oxygen Blue.jpg';
+import V20sunset from '../../assets/vivo/Vivo V20  Sunset Melody.webp';
+import V20midnight from '../../assets/vivo/Vivo V20 Midnight Jazz.jpg';
+import Y27sblack from '../../assets/vivo/Vivo Y27S Burgundy Black.jpg';
+import Y27sgreen from '../../assets/vivo/Vivo Y27S Garden Green.png';
+import Y22sblue from '../../assets/vivo/Vivo Y22s  Starlit Blue.jpg';
+import Y22scyan from '../../assets/vivo/Vivo Y22s  Summer Cyan.jpg';
+import Y17sgreen from '../../assets/vivo/Vivo Y17S Forest Green.png';
+import Y17spurple from '../../assets/vivo/Vivo Y17S Glitter Purple.png';
+import Y19sblack from '../../assets/vivo/Vivo Y19s Glossy Black.jpg';
+import Y19ssilver from '../../assets/vivo/Vivo Y19s Pearl Silver.jpg';
+import V295Gblack from '../../assets/vivo/Vivo V29 5G Forest Black.jpg';
+import V295Gmagic from '../../assets/vivo/Vivo V29 5G Magic Maroon.jpeg';
+import V295Gpink from '../../assets/vivo/Vivo V29 5G Rose Pink.jpg';
+import V295Gice from '../../assets/vivo/Vivo V29 5G ice Creek Blue.jpg';
 
 
 const vivoproducts = [
@@ -128,6 +130,14 @@ const vivoproducts = [
 ];
 
 const VivoPage: React.FC = () => {
+
+  interface product {
+    id: number;
+    name: string;
+    price: string;
+    images: { [color: string]: string | undefined };  // Allow string or undefined
+  }
+
   const [selectedColors, setSelectedColors] = useState<{ [productId: number]: string }>(
     vivoproducts.reduce((acc, product) => {
       const defaultColor = Object.keys(product.images)[0]; // Set the first color as the default
@@ -139,6 +149,7 @@ const VivoPage: React.FC = () => {
   const [favorites, setFavorites] = useState<{ [id: number]: number }>({}); // Change to track count of favorites
   const [sortOption, setSortOption] = useState('latest');
   const [currentBrand, setCurrentBrand] = useState<string>('Home');
+  const {addToWishlist, removeFromWishlist } = useWishlist(); // Use Wishlist Context
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -159,23 +170,30 @@ const VivoPage: React.FC = () => {
   };
 
 
-  const handleFavoriteClick = (productId: number) => {
-    console.log(`Clicked product ID: ${productId}`);
-    console.log(`Is favorited before click: ${favorites[productId] === 1}`);
+  const handleFavoriteClick = (product: product) => {
+    console.log(`Clicked product ID: ${product.id}`);
+    console.log(`Is favorited before click: ${favorites[product.id] === 1}`);
 
-    const isFavorited = favorites[productId] === 1;
+    const isFavorited = favorites[product.id] === 1;
 
     setFavorites((prevFavorites) => ({
       ...prevFavorites,
-      [productId]: isFavorited ? 0 : 1,
+      [product.id]: isFavorited ? 0 : 1,
     }));
 
     if (isFavorited) {
       console.log('Decrementing favorites count');
       decrementFavorites();
+      removeFromWishlist(product.id);
     } else {
       console.log('Incrementing favorites count');
       incrementFavorites();
+      addToWishlist({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[selectedColors[product.id] as keyof typeof product.images] as string, // Type assertion to string
+      });
     }
   };
 
@@ -246,7 +264,7 @@ const VivoPage: React.FC = () => {
               onClick={() => handleImageClick(product.id)} // Only pass the product.id
               style={{ cursor: 'pointer' }}
             />
-            <div className="heart-icon1" onClick={() => handleFavoriteClick(product.id)}>
+            <div className="heart-icon1" onClick={() => handleFavoriteClick(product)}>
               <FontAwesomeIcon
                 icon={favorites[product.id] ? faHeartFilled : faHeartEmpty}
                 style={{ color: favorites[product.id] ? '#16263E' : 'black', cursor: 'pointer' }}
