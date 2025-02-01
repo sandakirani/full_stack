@@ -1,6 +1,18 @@
+
+body {
+    background-color: rgba(0, 0, 0, 0.8); 
+    font-family: Arial, sans-serif;
+ 
+    
+  }
 .returns-container {
-    max-width: 800px;
-    margin: 0 auto;
+    margin: 50px 100px ;
+    
+    background-color: rgba(0, 0, 0, 0.8);
+    max-width: 80%;
+    
+    
+    
     padding: 20px;
     text-align: center;
   }
