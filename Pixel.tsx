@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer/Footer';
 import './Brand.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
-import { useFavorites } from '../components/FavoritesContext';
-import pro9XLobsidian from '../assets/Pixel/Google Pixel 9 Pro XL Obsidian.jpg';
-import pro9XLporcelain from '../assets/Pixel/Google Pixel 9 Pro XL Porcelain.jpg';
-import pro9XLhazel from '../assets/Pixel/Google Pixel 9 Pro XL Hazel.jpg';
-import pro9FoldObsidian from '../assets/Pixel/Google Pixel 9 Pro Fold Obsidian.jpg';
-import pro9Foldporcelain from '../assets/Pixel/Google Pixel 9 Pro Fold Porcelain.jpg';
-import pro8obsidian from '../assets/Pixel/Google Pixel 8 Pro Obsidian.jpg';
-import pro8bay from '../assets/Pixel/Google Pixel 8 Pro bay.jpg';
-import Lemongrass8 from '../assets/Pixel/Google Pixel 8 Lemongrass.jpg';
-import Obsidian8 from '../assets/Pixel/Google Pixel 8 Obsidian.jpg';
-import porcelain8 from '../assets/Pixel/Google Pixel 8 porcelain.jpg';
-import A8Obsidian from '../assets/Pixel/Google Pixel 8A Obsidian.jpg';
-import A8porcelain from '../assets/Pixel/Google Pixel 8A porcelain.avif';
-import pro7obsidian from '../assets/Pixel/google pixel 7 pro obsidian.jpg';
-import pro7hazel from '../assets/Pixel/Google Pixel 7 Pro hazel.jpg';
-import pro7snow from '../assets/Pixel/Google Pixel 7 Pro snow.jpg';
+import { useFavorites } from '../Header/FavoritesContext';
+import { useWishlist } from '../HeaderInside/WishlistContext';
+
+import pro9XLobsidian from '../../assets/Pixel/Google Pixel 9 Pro XL Obsidian.jpg';
+import pro9XLporcelain from '../../assets/Pixel/Google Pixel 9 Pro XL Porcelain.jpg';
+import pro9XLhazel from '../../assets/Pixel/Google Pixel 9 Pro XL Hazel.jpg';
+import pro9FoldObsidian from '../../assets/Pixel/Google Pixel 9 Pro Fold Obsidian.jpg';
+import pro9Foldporcelain from '../../assets/Pixel/Google Pixel 9 Pro Fold Porcelain.jpg';
+import pro8obsidian from '../../assets/Pixel/Google Pixel 8 Pro Obsidian.jpg';
+import pro8bay from '../../assets/Pixel/Google Pixel 8 Pro bay.jpg';
+import Lemongrass8 from '../../assets/Pixel/Google Pixel 8 Lemongrass.jpg';
+import Obsidian8 from '../../assets/Pixel/Google Pixel 8 Obsidian.jpg';
+import porcelain8 from '../../assets/Pixel/Google Pixel 8 porcelain.jpg';
+import A8Obsidian from '../../assets/Pixel/Google Pixel 8A Obsidian.jpg';
+import A8porcelain from '../../assets/Pixel/Google Pixel 8A porcelain.avif';
+import pro7obsidian from '../../assets/Pixel/google pixel 7 pro obsidian.jpg';
+import pro7hazel from '../../assets/Pixel/Google Pixel 7 Pro hazel.jpg';
+import pro7snow from '../../assets/Pixel/Google Pixel 7 Pro snow.jpg';
 
 
 
@@ -118,6 +120,14 @@ const pixelproducts = [
 ];
 
 const PixelPage: React.FC = () => {
+
+  interface product {
+    id: number;
+    name: string;
+    price: string;
+    images: { [color: string]: string | undefined };  // Allow string or undefined
+  }
+
   const [selectedColors, setSelectedColors] = useState<{ [productId: number]: string }>(
     pixelproducts.reduce((acc, product) => {
       const defaultColor = Object.keys(product.images)[0]; // Set the first color as the default
@@ -129,6 +139,7 @@ const PixelPage: React.FC = () => {
   const [favorites, setFavorites] = useState<{ [id: number]: number }>({}); // Change to track count of favorites
   const [sortOption, setSortOption] = useState('latest');
   const [currentBrand, setCurrentBrand] = useState<string>('Home');
+  const {addToWishlist, removeFromWishlist } = useWishlist(); // Use Wishlist Context
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -149,23 +160,30 @@ const PixelPage: React.FC = () => {
   };
 
  
-  const handleFavoriteClick = (productId: number) => {
-    console.log(`Clicked product ID: ${productId}`);
-    console.log(`Is favorited before click: ${favorites[productId] === 1}`);
+  const handleFavoriteClick = (product: product) => {
+    console.log(`Clicked product ID: ${product.id}`);
+    console.log(`Is favorited before click: ${favorites[product.id] === 1}`);
   
-    const isFavorited = favorites[productId] === 1;
+    const isFavorited = favorites[product.id] === 1;
   
     setFavorites((prevFavorites) => ({
       ...prevFavorites,
-      [productId]: isFavorited ? 0 : 1,
+      [product.id]: isFavorited ? 0 : 1,
     }));
   
     if (isFavorited) {
       console.log('Decrementing favorites count');
       decrementFavorites();
+      removeFromWishlist(product.id);
     } else {
       console.log('Incrementing favorites count');
       incrementFavorites();
+      addToWishlist({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[selectedColors[product.id] as keyof typeof product.images] as string, // Type assertion to string
+      });
     }
   };
   
@@ -237,10 +255,10 @@ const PixelPage: React.FC = () => {
               onClick={() => handleImageClick(product.id)} // Only pass the product.id
               style={{ cursor: 'pointer' }}
             />
-            <div className="heart-icon1" onClick={() => handleFavoriteClick(product.id)}>
+            <div className="heart-icon1" onClick={() => handleFavoriteClick(product)}>
               <FontAwesomeIcon
                 icon={favorites[product.id] ? faHeartFilled : faHeartEmpty}
-                style={{ color: favorites[product.id] ? '#16263E' : 'black', cursor: 'pointer' }}
+                style={{ color: favorites[product.id] ? "#16263E" : "black", cursor: "pointer" }}
               />
             </div>
             {!product.stock && <p className="out-of-stock">Out of Stock</p>}
