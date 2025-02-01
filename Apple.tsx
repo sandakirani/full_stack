@@ -1,34 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer/Footer';
 import './Brand.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
-import { useFavorites } from '../components/FavoritesContext';
-import spromaxblack from '../assets/Apple/iPhone 16 Pro Max Black Titanium.jpg';
-import spromaxwhite from '../assets/Apple/iPhone 16 Pro Max White Titanium.jpg';
-import spromaxdesert from '../assets/Apple/iPhone 16 Pro Max Desert Titanium.jpg';
-import spromaxnatural from '../assets/Apple/iPhone 16 Pro Max Natural Titanium.jpg';
-import splusblack from '../assets/Apple/iPhone 16 Plus black.jpg';
-import spluspink from '../assets/Apple/iPhone 16 Plus Pink.jpg';
-import splusteal from '../assets/Apple/iPhone 16 Plus teal.jpg';
-import splusultramarine from '../assets/Apple/iPhone 16 Plus Ultramarine.jpg';
-import spluswhite from '../assets/Apple/iPhone 16 Plus white.jpeg';
-import fipromaxblack from '../assets/Apple/iPhone 15 pro max black Titanium.jpg';
-import fipromaxwhite from '../assets/Apple/iPhone 15 pro max White Titanium.jpg';
-import fipromaxblue from '../assets/Apple/iPhone 15 Pro Max blue.jpg';
-import fipromaxnatural from '../assets/Apple/iPhone 15 pro max Natural Titanium.jpg';
-import fifplusblue from '../assets/Apple/iPhone 15 Plus blue.webp';
-import fifpluspink from '../assets/Apple/iPhone 15 Plus pink.jpg';
-import fifplusyellow from '../assets/Apple/iPhone 15 Plus yellow.jpg';
-import foplusmidnight from '../assets/Apple/iPhone 14 Plus midnight.webp';
-import fopluspurple from '../assets/Apple/iPhone 14 Plus purple.jpg';
-import foplusred from '../assets/Apple/iPhone 14 Plus red.jpg';
-import foplusstarlight from '../assets/Apple/iPhone 14 Plus starlight.webp';
-import foplusyellow from '../assets/Apple/iPhone 14 Plus yellow.jpg';
+import { useFavorites } from '../Header/FavoritesContext';
+import { useWishlist } from '../HeaderInside/WishlistContext';
+
+import spromaxblack from '../../assets/Apple/iPhone 16 Pro Max Black Titanium.jpg';
+import spromaxwhite from '../../assets/Apple/iPhone 16 Pro Max White Titanium.jpg';
+import spromaxdesert from '../../assets/Apple/iPhone 16 Pro Max Desert Titanium.jpg';
+import spromaxnatural from '../../assets/Apple/iPhone 16 Pro Max Natural Titanium.jpg';
+import splusblack from '../../assets/Apple/iPhone 16 Plus black.jpg';
+import spluspink from '../../assets/Apple/iPhone 16 Plus Pink.jpg';
+import splusteal from '../../assets/Apple/iPhone 16 Plus teal.jpg';
+import splusultramarine from '../../assets/Apple/iPhone 16 Plus Ultramarine.jpg';
+import spluswhite from '../../assets/Apple/iPhone 16 Plus white.jpeg';
+import fipromaxblack from '../../assets/Apple/iPhone 15 pro max black Titanium.jpg';
+import fipromaxwhite from '../../assets/Apple/iPhone 15 pro max White Titanium.jpg';
+import fipromaxblue from '../../assets/Apple/iPhone 15 Pro Max blue.jpg';
+import fipromaxnatural from '../../assets/Apple/iPhone 15 pro max Natural Titanium.jpg';
+import fifplusblue from '../../assets/Apple/iPhone 15 Plus blue.webp';
+import fifpluspink from '../../assets/Apple/iPhone 15 Plus pink.jpg';
+import fifplusyellow from '../../assets/Apple/iPhone 15 Plus yellow.jpg';
+import foplusmidnight from '../../assets/Apple/iPhone 14 Plus midnight.webp';
+import fopluspurple from '../../assets/Apple/iPhone 14 Plus purple.jpg';
+import foplusred from '../../assets/Apple/iPhone 14 Plus red.jpg';
+import foplusstarlight from '../../assets/Apple/iPhone 14 Plus starlight.webp';
+import foplusyellow from '../../assets/Apple/iPhone 14 Plus yellow.jpg';
+
 
 const appleProducts = [
   {
@@ -145,6 +148,14 @@ const appleProducts = [
 ];
 
 const ApplePage: React.FC = () => {
+
+  interface product {
+    id: number;
+    name: string;
+    price: string;
+    images: { [color: string]: string | undefined };  // Allow string or undefined
+  }
+  
   const [selectedColors, setSelectedColors] = useState<{ [productId: number]: string }>(
     appleProducts.reduce((acc, product) => {
       const defaultColor = Object.keys(product.images)[0]; // Set the first color as the default
@@ -156,6 +167,8 @@ const ApplePage: React.FC = () => {
   const [favorites, setFavorites] = useState<{ [id: number]: number }>({}); // Change to track count of favorites
   const [sortOption, setSortOption] = useState('latest');
   const [currentBrand, setCurrentBrand] = useState<string>('Home');
+  const {addToWishlist, removeFromWishlist } = useWishlist(); // Use Wishlist Context
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -176,25 +189,33 @@ const ApplePage: React.FC = () => {
   };
 
 
-  const handleFavoriteClick = (productId: number) => {
-    console.log(`Clicked product ID: ${productId}`);
-    console.log(`Is favorited before click: ${favorites[productId] === 1}`);
-
-    const isFavorited = favorites[productId] === 1;
-
+  const handleFavoriteClick = (product: product) => {
+    console.log(`Clicked product ID: ${product.id}`);
+    console.log(`Is favorited before click: ${favorites[product.id] === 1}`);
+  
+    const isFavorited = favorites[product.id] === 1;
+  
     setFavorites((prevFavorites) => ({
       ...prevFavorites,
-      [productId]: isFavorited ? 0 : 1,
+      [product.id]: isFavorited ? 0 : 1,
     }));
-
+  
     if (isFavorited) {
-      console.log('Decrementing favorites count');
+      console.log("Decrementing favorites count");
       decrementFavorites();
+      removeFromWishlist(product.id);
     } else {
-      console.log('Incrementing favorites count');
+      console.log("Incrementing favorites count");
       incrementFavorites();
+      addToWishlist({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[selectedColors[product.id] as keyof typeof product.images] as string, // Type assertion to string
+      });      
     }
   };
+  
 
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -264,15 +285,15 @@ const ApplePage: React.FC = () => {
               onClick={() => handleImageClick(product.id)} // Only pass the product.id
               style={{ cursor: 'pointer' }}
             />
-            <div className="heart-icon1" onClick={() => handleFavoriteClick(product.id)}>
+            <div className="heart-icon1" onClick={() => handleFavoriteClick(product)}>
               <FontAwesomeIcon
                 icon={favorites[product.id] ? faHeartFilled : faHeartEmpty}
-                style={{ color: favorites[product.id] ? '#16263E' : 'black', cursor: 'pointer' }}
+                style={{ color: favorites[product.id] ? "#16263E" : "black", cursor: "pointer" }}
               />
             </div>
             {!product.stock && <p className="out-of-stock">Out of Stock</p>}
             <h3 className="pname">{product.name}</h3>
-            <p className="price">LKR {product.price.toLocaleString()}</p>
+            <p className="price">{product.price.toLocaleString()}</p>
             <div className="color-selector">
               {Object.keys(product.images).map((color) => (
                 <div
