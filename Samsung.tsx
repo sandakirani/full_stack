@@ -1,36 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer/Footer';
 import './Brand.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
-import { useFavorites } from '../components/FavoritesContext';
-import s24ultrablack from '../assets/Samsung/samsung galaxy s24 ultra phantom black.jpg';
-import s24ultrasilver from '../assets/Samsung/samsung galaxy s24 ultra Phantom Silver.jpg';
-import s24ultragreen from '../assets/Samsung/samsung galaxy s24 ultra Phantom Green.jpg';
-import sblack from '../assets/Samsung/samsung galaxy s24 phantom black.jpg';
-import ssilver from '../assets/Samsung/Samsung Galaxy S24 Phantom Silver.jpg';
-import syellow from '../assets/Samsung/Samsung Galaxy S24 titanium yellow .jpg';
-import Zfold6black from '../assets/Samsung/Samsung Galaxy Z Fold6 Phantom Black.jpg';
-import zfold6beige from '../assets/Samsung/Samsung Galaxy Z Fold6 Beige.jpg';
-import zfold6Burgundy from '../assets/Samsung/Samsung Galaxy Z Fold6 Burgundy.jpg';
-import zflip6mint from '../assets/Samsung/Samsung Galaxy Z Flip6 mint.jpg';
-import zflip6borapurple from '../assets/Samsung/Samsung Galaxy Z Flip6 Bora Purple.jpg';
-import zflip6cream from '../assets/Samsung/Samsung Galaxy Z Flip6 Cream.jpg';
-import s23ultrablack from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Black.jpg';
-import s23ultrasilver from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Silver.jpg';
-import s23ultralavender from '../assets/Samsung/Samsung Galaxy S23 Ultra Phantom lavender.webp';
-import s23FEgraphite from '../assets/Samsung/Samsung Galaxy S23 FE Graphite.jpg';
-import s23FElavender from '../assets/Samsung/Samsung Galaxy S23 FE Lavender.jpg';
-import s23FEolive from '../assets/Samsung/Samsung Galaxy S23 FE Olive.jpg';
-import A555Gblack from '../assets/Samsung/Samsung Galaxy A55 5G Awesome Black.jpg';
-import A555Gviolet from '../assets/Samsung/Samsung Galaxy A55 5G Awesome violet.jpg';
-import A555Gwhite from '../assets/Samsung/Samsung Galaxy A55 5G Awesome white.jpg';
-import M555GIcyblue from '../assets/Samsung/Samsung Galaxy M55 5G Icy Blue.jpg';
-import M555GBlazing from '../assets/Samsung/Samsung Galaxy M55 5G Blazing Black.jpg';
+import { useFavorites } from '../Header/FavoritesContext';
+import { useWishlist } from '../HeaderInside/WishlistContext';
+
+import s24ultrablack from '../../assets/Samsung/samsung galaxy s24 ultra phantom black.jpg';
+import s24ultrasilver from '../../assets/Samsung/samsung galaxy s24 ultra Phantom Silver.jpg';
+import s24ultragreen from '../../assets/Samsung/samsung galaxy s24 ultra Phantom Green.jpg';
+import sblack from '../../assets/Samsung/samsung galaxy s24 phantom black.jpg';
+import ssilver from '../../assets/Samsung/Samsung Galaxy S24 Phantom Silver.jpg';
+import syellow from '../../assets/Samsung/Samsung Galaxy S24 titanium yellow .jpg';
+import Zfold6black from '../../assets/Samsung/Samsung Galaxy Z Fold6 Phantom Black.jpg';
+import zfold6beige from '../../assets/Samsung/Samsung Galaxy Z Fold6 Beige.jpg';
+import zfold6Burgundy from '../../assets/Samsung/Samsung Galaxy Z Fold6 Burgundy.jpg';
+import zflip6mint from '../../assets/Samsung/Samsung Galaxy Z Flip6 mint.jpg';
+import zflip6borapurple from '../../assets/Samsung/Samsung Galaxy Z Flip6 Bora Purple.jpg';
+import zflip6cream from '../../assets/Samsung/Samsung Galaxy Z Flip6 Cream.jpg';
+import s23ultrablack from '../../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Black.jpg';
+import s23ultrasilver from '../../assets/Samsung/Samsung Galaxy S23 Ultra Phantom Silver.jpg';
+import s23ultralavender from '../../assets/Samsung/Samsung Galaxy S23 Ultra Phantom lavender.webp';
+import s23FEgraphite from '../../assets/Samsung/Samsung Galaxy S23 FE Graphite.jpg';
+import s23FElavender from '../../assets/Samsung/Samsung Galaxy S23 FE Lavender.jpg';
+import s23FEolive from '../../assets/Samsung/Samsung Galaxy S23 FE Olive.jpg';
+import A555Gblack from '../../assets/Samsung/Samsung Galaxy A55 5G Awesome Black.jpg';
+import A555Gviolet from '../../assets/Samsung/Samsung Galaxy A55 5G Awesome violet.jpg';
+import A555Gwhite from '../../assets/Samsung/Samsung Galaxy A55 5G Awesome white.jpg';
+import M555GIcyblue from '../../assets/Samsung/Samsung Galaxy M55 5G Icy Blue.jpg';
+import M555GBlazing from '../../assets/Samsung/Samsung Galaxy M55 5G Blazing Black.jpg';
 
 const samsungproducts = [
   {
@@ -136,6 +138,14 @@ const samsungproducts = [
 ];
 
 const SamsungPage: React.FC = () => {
+
+  interface product {
+    id: number;
+    name: string;
+    price: string;
+    images: { [color: string]: string | undefined };  // Allow string or undefined
+  }
+
   const [selectedColors, setSelectedColors] = useState<{ [productId: number]: string }>(
     samsungproducts.reduce((acc, product) => {
       const defaultColor = Object.keys(product.images)[0]; // Set the first color as the default
@@ -147,6 +157,7 @@ const SamsungPage: React.FC = () => {
   const [favorites, setFavorites] = useState<{ [id: number]: number }>({}); // Change to track count of favorites
   const [sortOption, setSortOption] = useState('latest');
   const [currentBrand, setCurrentBrand] = useState<string>('Home');
+  const {addToWishlist, removeFromWishlist } = useWishlist(); // Use Wishlist Context
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -167,23 +178,30 @@ const SamsungPage: React.FC = () => {
   };
 
  
-  const handleFavoriteClick = (productId: number) => {
-    console.log(`Clicked product ID: ${productId}`);
-    console.log(`Is favorited before click: ${favorites[productId] === 1}`);
+  const handleFavoriteClick = (product: product) => {
+    console.log(`Clicked product ID: ${product.id}`);
+    console.log(`Is favorited before click: ${favorites[product.id] === 1}`);
   
-    const isFavorited = favorites[productId] === 1;
+    const isFavorited = favorites[product.id] === 1;
   
     setFavorites((prevFavorites) => ({
       ...prevFavorites,
-      [productId]: isFavorited ? 0 : 1,
+      [product.id]: isFavorited ? 0 : 1,
     }));
   
     if (isFavorited) {
       console.log('Decrementing favorites count');
       decrementFavorites();
+      removeFromWishlist(product.id);
     } else {
       console.log('Incrementing favorites count');
       incrementFavorites();
+      addToWishlist({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[selectedColors[product.id] as keyof typeof product.images] as string, // Type assertion to string
+      });
     }
   };
   
@@ -255,7 +273,7 @@ const SamsungPage: React.FC = () => {
               onClick={() => handleImageClick(product.id)} // Only pass the product.id
               style={{ cursor: 'pointer' }}
             />
-            <div className="heart-icon1" onClick={() => handleFavoriteClick(product.id)}>
+            <div className="heart-icon1" onClick={() => handleFavoriteClick(product)}>
               <FontAwesomeIcon
                 icon={favorites[product.id] ? faHeartFilled : faHeartEmpty}
                 style={{ color: favorites[product.id] ? '#16263E' : 'black', cursor: 'pointer' }}
