@@ -1,16 +1,21 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import ProductsGrid from '../home/ProductsGrid';
-import BrandSection from '../home/BrandSection';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer/Footer';
+import ProductsGrid from './ProductsGrid';
+import BrandSection from './BrandSection';
 import './Home.css';
 
-const HomePage: React.FC = () => {
+interface HomePageProps {
+  onAddToWishlist: (product: any) => void;
+  onRemoveFromWishlist: (productId: number) => void;
+}
+
+const HomePage: React.FC<HomePageProps> = () => {
   return (
     <div className="home">
       <Navbar />
       <h1 className="section-title">New Arrivals</h1>
-      <ProductsGrid />
+      <ProductsGrid/>
       <BrandSection />
       <Footer />
     </div>
