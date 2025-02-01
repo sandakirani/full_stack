@@ -1,37 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer/Footer';
 import './Brand.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
-import { useFavorites } from '../components/FavoritesContext';
-import ultra14black from '../assets/Xiaomi/Xiaomi 14 Ultra black.jpg';
-import ultra14white from '../assets/Xiaomi/Xiaomi 14 Ultra white.jpg';
-import Note13proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Midnight Black.jpg';
-import Note13proplusgreen from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Mint Green.jpg';
-import Note13proplusblue from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Ice Blue.jpg';
-import Note13problack from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Midnight Black.jpg';
-import Note13proWhite from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Arctic White.jpg';
-import Note13propurple from '../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Lavender Purple.jpg';
-import Note13black from '../assets/Xiaomi/Xiaomi Redmi Note 13  Midnight Black.jpg';
-import Note13green from '../assets/Xiaomi/Xiaomi Redmi Note 13  Mint Green.jpg';
-import Note13blue from '../assets/Xiaomi/Xiaomi Redmi Note 13  Ice Blue.jpg';
-import Note13sunset from '../assets/Xiaomi/Xiaomi Redmi Note 13  Ocean Sunset.webp';
-import Note12sblack from '../assets/Xiaomi/Xiaomi Redmi Note 12S Onyx Black.jpg';
-import Note12sgreen from '../assets/Xiaomi/Xiaomi Redmi Note 12S Pearl Green.jpg';
-import Note12sblue from '../assets/Xiaomi/Xiaomi Redmi Note 12S ice blue.png';
-import Note12proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 12 pro+  Midnight Black.jpg';
-import Note12propluswhite from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Polar White.jpg';
-import Note12proplusblue from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Sky Blue.jpg';
-import Note12problack from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Onyx Black.png';
-import Note12problue from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Frosted Blue.jpg';
-import Note12propurple from '../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Stardust Purple.jpg';
-import Note14proplusblack from '../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ Titan Black.jpg';
-import Note14propluspurple from '../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ phantom Purple.jpg';
-import Note14proplusblue from '../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ spectre Blue.jpg';
+import { useFavorites } from '../Header/FavoritesContext';
+import { useWishlist } from '../HeaderInside/WishlistContext';
+
+import ultra14black from '../../assets/Xiaomi/Xiaomi 14 Ultra black.jpg';
+import ultra14white from '../../assets/Xiaomi/Xiaomi 14 Ultra white.jpg';
+import Note13proplusblack from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Midnight Black.jpg';
+import Note13proplusgreen from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Mint Green.jpg';
+import Note13proplusblue from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Ice Blue.jpg';
+import Note13problack from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Midnight Black.jpg';
+import Note13proWhite from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Arctic White.jpg';
+import Note13propurple from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Lavender Purple.jpg';
+import Note13black from '../../assets/Xiaomi/Xiaomi Redmi Note 13  Midnight Black.jpg';
+import Note13green from '../../assets/Xiaomi/Xiaomi Redmi Note 13  Mint Green.jpg';
+import Note13blue from '../../assets/Xiaomi/Xiaomi Redmi Note 13  Ice Blue.jpg';
+import Note13sunset from '../../assets/Xiaomi/Xiaomi Redmi Note 13  Ocean Sunset.webp';
+import Note12sblack from '../../assets/Xiaomi/Xiaomi Redmi Note 12S Onyx Black.jpg';
+import Note12sgreen from '../../assets/Xiaomi/Xiaomi Redmi Note 12S Pearl Green.jpg';
+import Note12sblue from '../../assets/Xiaomi/Xiaomi Redmi Note 12S ice blue.png';
+import Note12proplusblack from '../../assets/Xiaomi/Xiaomi Redmi Note 12 pro+  Midnight Black.jpg';
+import Note12propluswhite from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Polar White.jpg';
+import Note12proplusblue from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Sky Blue.jpg';
+import Note12problack from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Onyx Black.png';
+import Note12problue from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Frosted Blue.jpg';
+import Note12propurple from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Stardust Purple.jpg';
+import Note14proplusblack from '../../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ Titan Black.jpg';
+import Note14propluspurple from '../../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ phantom Purple.jpg';
+import Note14proplusblue from '../../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ spectre Blue.jpg';
 
 
 const xiaomiproducts = [
@@ -128,6 +130,14 @@ const xiaomiproducts = [
 ];
 
 const XiaomiPage: React.FC = () => {
+
+  interface product {
+    id: number;
+    name: string;
+    price: string;
+    images: { [color: string]: string | undefined };  // Allow string or undefined
+  }
+
   const [selectedColors, setSelectedColors] = useState<{ [productId: number]: string }>(
     xiaomiproducts.reduce((acc, product) => {
       const defaultColor = Object.keys(product.images)[0]; // Set the first color as the default
@@ -139,6 +149,7 @@ const XiaomiPage: React.FC = () => {
   const [favorites, setFavorites] = useState<{ [id: number]: number }>({}); // Change to track count of favorites
   const [sortOption, setSortOption] = useState('latest');
   const [currentBrand, setCurrentBrand] = useState<string>('Home');
+  const {addToWishlist, removeFromWishlist } = useWishlist(); // Use Wishlist Context
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -159,23 +170,30 @@ const XiaomiPage: React.FC = () => {
   };
 
  
-  const handleFavoriteClick = (productId: number) => {
-    console.log(`Clicked product ID: ${productId}`);
-    console.log(`Is favorited before click: ${favorites[productId] === 1}`);
+  const handleFavoriteClick = (product: product) => {
+    console.log(`Clicked product ID: ${product.id}`);
+    console.log(`Is favorited before click: ${favorites[product.id] === 1}`);
   
-    const isFavorited = favorites[productId] === 1;
+    const isFavorited = favorites[product.id] === 1;
   
     setFavorites((prevFavorites) => ({
       ...prevFavorites,
-      [productId]: isFavorited ? 0 : 1,
+      [product.id]: isFavorited ? 0 : 1,
     }));
   
     if (isFavorited) {
       console.log('Decrementing favorites count');
       decrementFavorites();
+      removeFromWishlist(product.id);
     } else {
       console.log('Incrementing favorites count');
       incrementFavorites();
+      addToWishlist({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[selectedColors[product.id] as keyof typeof product.images] as string, // Type assertion to string
+      });
     }
   };
   
@@ -247,7 +265,7 @@ const XiaomiPage: React.FC = () => {
               onClick={() => handleImageClick(product.id)} // Only pass the product.id
               style={{ cursor: 'pointer' }}
             />
-            <div className="heart-icon1" onClick={() => handleFavoriteClick(product.id)}>
+            <div className="heart-icon1" onClick={() => handleFavoriteClick(product)}>
               <FontAwesomeIcon
                 icon={favorites[product.id] ? faHeartFilled : faHeartEmpty}
                 style={{ color: favorites[product.id] ? '#16263E' : 'black', cursor: 'pointer' }}
