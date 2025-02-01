@@ -9,4 +9,9 @@ const ReturnsRefunds: React.FC = () => {
     const toggleSection = (section: string) => {
       setOpenSection(openSection === section ? null : section);
     };
+    const sectionContent: Record<string, string> = {
+        // need to write the title and relevent content
+
+
+    }
 }
