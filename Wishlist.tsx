@@ -25,11 +25,14 @@ const WishlistPage: React.FC = () => {
   // Sync favoritesCount with wishlist length
   useEffect(() => {
     if (wishlist.length !== favoritesCount) {
-      decrementFavorites(favoritesCount); // Reset count
-      incrementFavorites(wishlist.length); // Set correct count
+      const difference = wishlist.length - favoritesCount;
+      if (difference > 0) {
+        incrementFavorites(difference);
+      } else {
+        decrementFavorites(Math.abs(difference));
+      }
     }
-  }, [wishlist.length]);
-  
+  }, [wishlist.length, favoritesCount, incrementFavorites, decrementFavorites]);
 
   const handleSelect = (id: number) => {
     setSelectedItems((prev) =>
@@ -65,8 +68,7 @@ const WishlistPage: React.FC = () => {
       ) : (
         <div className="wishlist-content">
           <div className="wishlist-actions">
-            <button onClick={handleRemoveSelected}>×</button>
-            <div className="remove-text">Remove</div>
+            <button onClick={handleRemoveSelected} disabled={selectedItems.length === 0}>Remove Selected</button>
             <label>
               <input type="checkbox" checked={selectedItems.length === wishlist.length} onChange={handleSelectAll} />
               Select all
@@ -77,8 +79,7 @@ const WishlistPage: React.FC = () => {
             {wishlist.map((item: WishlistItem) => (
               <div className="wishlist-item" key={item.id}>
                 <div className="item-actions">
-                  <button className="remove" onClick={() => removeFromWishlist(item.id)}>×</button>
-                  <div className="remove-text">Remove</div>
+                  <button className="remove" onClick={() => removeFromWishlist(item.id)}>Remove</button>
                   <input type="checkbox" checked={selectedItems.includes(item.id)} onChange={() => handleSelect(item.id)} />
                 </div>
                 <div className="item-details">
