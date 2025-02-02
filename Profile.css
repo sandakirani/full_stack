@@ -1,0 +1,62 @@
+/* profile page1 */
+
+
+
+.account-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    font-family: Arial, sans-serif;
+    background-position: center;
+    padding-top: 20px;
+    padding-left: 20px; 
+}
+
+  
+  .account-section {
+    background-color: #0f1e3d;
+    background-position: center;
+    color: white;
+    padding: 15px;
+    width: 250px;
+    border-radius: 10px;
+  }
+  
+  .account-section p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .icon {
+    margin-right: 10px;
+  }
+  
+  .lang {
+    margin-left: auto;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  
+  .logout-btn {
+    background-color: #0f1e3d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .logout-btn:hover {
+    background-color: #1d2f5d;
+  }
+  
+  .logout-btn .icon {
+    margin-right: 10px;
+  }
+  
