@@ -1,0 +1,272 @@
+.footer-container {
+  background-color: white;
+  color: #333;
+  font-family: Arial, sans-serif;
+  opacity: 88%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 40px 20px;
+  text-align: left;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-grow: 0;
+  height: 400px;
+}
+
+/* Footer Content */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  text-align: left;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+/* Contact Info */
+.contact-info {
+  width: 30%;
+  text-align: left;
+  margin-left: 0;
+  padding-right: 20px; 
+}
+
+.contact-info p,
+address {
+  margin: 5px 0;
+}
+
+.contact-table td {
+  padding: 5px 30px; /* Increase padding inside the table */
+}
+/* Email Hover */
+.email:hover {
+  color: #16263E;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  margin-top: 20px;
+}
+
+.icon {
+  color: black;
+  font-size: 30px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.icon:hover {
+  color: #007bff;
+}
+
+/* Social Media Hover Effects */
+.facebook:hover {
+  color: #3b5998;
+}
+
+.whatsapp:hover {
+  color: #25d366;
+}
+
+.instagram:hover {
+  color: #e4405f;
+}
+
+/* Logo Container */
+.l-container {
+  position: relative;
+  bottom: 100px;
+  left: -100;
+  text-align: center;
+  margin-bottom: 20px;
+  right: 250px;
+  padding: 0 20px;
+  width:400px;
+}
+
+.logofooter {
+  width: 400px;
+  height: 400px;
+}
+
+/* Footer Links */
+.footer-links {
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  min-width: 250px;
+  flex-wrap: wrap;
+  gap: 10px;
+  right:10px;
+  
+}
+
+.footer-links h4 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li a {
+  margin-bottom: 5px;
+  color: black;
+  text-decoration: none;
+}
+
+.footer-links ul li a:hover {
+  color: blue;
+}
+
+.Goto {
+  position: relative;
+  left: 1000px;
+  bottom:400px;
+}
+.customer {
+  position: relative;
+  left: 1050px;
+  bottom:400px;
+}
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #16263E;
+  background-color: #16263E;
+  font-size: 12px;
+  position: relative;
+  padding: 15px;
+  width: 100%;
+  height: 30px;
+  line-height: 1px; 
+}
+
+.footer-bottom p {
+  position: relative;
+  top: -10px;
+  color: white;
+}
+
+/* ----------------- RESPONSIVE MEDIA QUERIES ----------------- */
+
+/* Tablet View (768px and below) */
+@media screen and (max-width: 768px) {
+  .footer-container {
+    padding: 20px 10px; /* Reduced padding for smaller screens */
+    height: auto; /* Allow footer to adjust its height based on content */
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px; /* Add gap for vertical spacing between sections */
+  }
+
+  .contact-info,
+  .footer-links {
+    width: 80%; /* Increase width for smaller screens */
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+    gap: 15px; /* Adjust spacing for social icons */
+  }
+
+  .l-container {
+    left: 0;
+    width: 200px; /* Reduce logo container size */
+  }
+
+  .logofooter {
+    width: 150px; /* Reduce logo size */
+    height: 150px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-links h4 {
+    font-size: 18px;
+  }
+
+  .Goto,
+  .customer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* Mobile View (480px and below) */
+@media screen and (max-width: 480px) {
+  .footer-container {
+    padding: 10px; /* Further reduce padding for smaller screens */
+    height: auto;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Add more spacing between sections */
+  }
+
+  .contact-info,
+  .footer-links {
+    width: 100%;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+    gap: 10px; /* Adjust spacing for social icons */
+  }
+
+  .icon {
+    font-size: 25px; /* Reduce icon size */
+  }
+
+  .footer-bottom {
+    font-size: 10px;
+    padding: 10px;
+  }
+
+  .logofooter {
+    width: 120px; /* Further reduce logo size */
+    height: 120px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .Goto,
+  .customer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+  }
+}
