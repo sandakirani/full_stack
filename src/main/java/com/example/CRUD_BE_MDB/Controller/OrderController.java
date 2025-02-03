@@ -3,9 +3,12 @@ package com.example.CRUD_BE_MDB.Controller;
 import com.example.CRUD_BE_MDB.Model.Order;
 import com.example.CRUD_BE_MDB.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -14,26 +17,36 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping
-    public Order placeOrder(@RequestBody Order order) {
-        return orderService.placeOrder(order);
+    // Endpoint to place a new order
+    @PostMapping("/place")
+    public ResponseEntity<Order> placeOrder(@RequestBody Order order) {
+        try {
+            Order placedOrder = orderService.placeOrder(order);
+            return new ResponseEntity<>(placedOrder, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 
+    // Endpoint to get a single order by its ID
     @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable String id) {
-        return orderService.getOrderById(id)
-                .orElseThrow(() -> new RuntimeException("Order not found with ID: " + id));
+    public ResponseEntity<Order> getOrderById(@PathVariable("id") String id) {
+        Optional<Order> order = orderService.getOrderById(id);
+        return order.map(ResponseEntity::ok)
+                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-
-    @GetMapping
-    public List<Order> getAllOrders() {
-        return orderService.getAllOrders();
+    // Endpoint to get all orders
+    @GetMapping("/all")
+    public ResponseEntity<List<Order>> getAllOrders() {
+        List<Order> orders = orderService.getAllOrders();
+        return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
+    // Endpoint to delete an order by its ID
     @DeleteMapping("/{id}")
-    public String deleteOrder(@PathVariable String id) {
+    public ResponseEntity<Void> deleteOrder(@PathVariable("id") String id) {
         orderService.deleteOrder(id);
-        return "Order deleted successfully with ID: " + id;
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

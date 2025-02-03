@@ -3,11 +3,13 @@ package com.example.CRUD_BE_MDB.Controller;
 import com.example.CRUD_BE_MDB.Model.product;
 import com.example.CRUD_BE_MDB.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/api/products")
 public class ProductController {
 
