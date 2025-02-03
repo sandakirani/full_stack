@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SignUp.css";
-import logo from "../assets/cw.png"
+import logo from "../../assets/Logo/cw.png"
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -37,11 +37,7 @@ const Signup: React.FC = () => {
                         placeholder="Enter Email"
                         className="signup-input"
                     />
-                    <input
-                        type="phonenumber"
-                        placeholder="Enter Phone Number"
-                        className="signup-input"
-                    />
+                
                     <div className="password-container">
                         <input
                             type={passwordVisible ? "text" : "password"}
@@ -72,7 +68,7 @@ const Signup: React.FC = () => {
                         Create Account
                     </button>
                 </form>
-                <p className="signup">
+                <p className="login">
                     <b>Already have an account? </b><a href="/">Login!</a>
                 </p>
             </div> 

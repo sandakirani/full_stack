@@ -1,6 +1,6 @@
 /* Overall container */
 .signup-page {
-    background-image: url('../assets/login_background.png');
+    background-image: url('../../assets/Logo/login_background.png');
     background-size: cover;
     background-position: center;
     width: 100vw;
@@ -97,5 +97,10 @@
     border: 2px solid white;
 }
 
-
+.login {
+    color: white;
+}
+.login a{
+    color: yellow;
+}
 
