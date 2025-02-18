@@ -33,6 +33,14 @@
   margin-right: 20px;
 }
 
+.actions .actions-inactive {
+  color: #bac1cc;
+}
+
+.actions .actions-inactive:hover {
+  color: #bac1cc;
+}
+
 select, button {
   padding: 10px;
   border-radius: 5px;
@@ -46,12 +54,18 @@ select {
 }
 
 button {
-  background-color: #374151;
+  background-color: #4f6b9c;
   color: white;
+  padding: 10px 20px;
+}
+
+.add-button {
+  position:absolute;
+  right: 30px;
 }
 
 button:hover {
-  background-color: #4b5563;
+  background-color: #6083be;
 }
 
 .search-button {
@@ -193,4 +207,12 @@ input[type="checkbox"] {
   height: 16px;
 }
 
+.stock-input {
+  width: 50px;
+  background-color: #eff2fb;
+  padding: 4px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
   
