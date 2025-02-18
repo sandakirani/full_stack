@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AdminProduct.css";
 
 import spromaxblack from "../assets/Apple/iPhone 16 Pro Max Black Titanium.jpg";
@@ -15,8 +15,9 @@ type ProductType = {
   id: number;
   image: string;
   name: string;
+  brand: string;
   color: string;
-  status: "available" | "not available";
+  inStock: boolean;
   stock: number;
   price: number;
 };
@@ -26,8 +27,9 @@ const appleProducts: ProductType[] = [
     id: 1,
     image: spromaxblack,
     name: "iPhone 16 Pro Max Black Titanium",
+    brand: "apple",
     color: "black",
-    status: "available", 
+    inStock: true, 
     stock: 12,
     price: 264900,
   },
@@ -35,8 +37,9 @@ const appleProducts: ProductType[] = [
     id: 2,
     image: spromaxdesert,
     name: "iPhone 16 Pro Max Desert Titanium",
+    brand: "apple",
     color: "#FAD5A5",
-    status: "not available", 
+    inStock: false, 
     stock: 0,
     price: 264900,
   },
@@ -44,8 +47,9 @@ const appleProducts: ProductType[] = [
     id: 3,
     image: spluspink,
     name: "iPhone 16 Plus",
+    brand: "apple",
     color: "pink",
-    status: "available", 
+    inStock: true, 
     stock: 10,
     price: 299900,
   },
@@ -56,8 +60,9 @@ const samsungProducts: ProductType[] = [
     id: 4,
     image: ssilver,
     name: "Samsung Galaxy S24 Phantom Silver",
+    brand: "samsung",
     color: "#a3a4aa",
-    status: "not available", 
+    inStock: false, 
     stock: 0,
     price: 255000,
   },
@@ -65,8 +70,9 @@ const samsungProducts: ProductType[] = [
     id: 5,
     image: zflip6cream,
     name: "Samsung Galaxy Z Flip6 Cream",
+    brand: "samsung",
     color: "#FFFDD0",
-    status: "available", 
+    inStock: true, 
     stock: 20,
     price: 289900,
   },
@@ -74,8 +80,9 @@ const samsungProducts: ProductType[] = [
     id: 6,
     image: A555Gwhite,
     name: "Samsung Galaxy A55 5G Awesome white",
+    brand: "samsung",
     color: "White",
-    status: "available", 
+    inStock: true, 
     stock: 20,
     price: 289900,
   },
@@ -86,8 +93,9 @@ const pixelProducts: ProductType[] = [
     id: 7,
     image: pro9XLobsidian,
     name: "Google Pixel 9 Pro XL Obsidian",
+    brand: "pixel",
     color: "#71627a",
-    status: "available", 
+    inStock: true, 
     stock: 15,
     price: 300000,
   },
@@ -98,8 +106,9 @@ const vivoProducts: ProductType[] = [
     id: 8,
     image: V20SEblue,
     name: "Vivo V20 SE Oxygen Blue",
+    brand: "vivo",
     color: "#90B5D4",
-    status: "not available", 
+    inStock: false, 
     stock: 0,
     price: 234800,
   },
@@ -110,8 +119,9 @@ const xiaomiProducts: ProductType[] = [
     id: 9,
     image: Note12propurple,
     name: "Xiaomi Redmi Note 12 Pro Stardust Purple",
+    brand: "xiaomi",
     color: "#6C3BAA",
-    status: "available", 
+    inStock: true, 
     stock: 18,
     price: 254800,
   },
@@ -129,38 +139,66 @@ const AdminProduct: React.FC = () => {
   const [editingProduct, setEditingProduct] = useState<ProductType | null>(null);
   const [category, setCategory] = useState("All Categories");
   const [availability, setAvailability] = useState("All Products");
+  const [selectedAction, setSelectedAction] = useState("Actions");
+  useEffect(() => {
+    setFilteredProducts(products);
+  }, [products]);
+  
 
   const handleSearch = () => {
+    if (category === "All Categories" && availability === "All Products") {
+      setFilteredProducts(products);
+      return;
+    }
+  
     let filtered = products;
+  
     if (category !== "All Categories") {
       filtered = filtered.filter((p) =>
-        p.name.toLowerCase().includes(category.toLowerCase())
+        p.brand.toLowerCase() === category.toLowerCase()
       );
     }
+  
     if (availability !== "All Products") {
-      filtered = filtered.filter((p) => p.status === availability);
+      const isAvailable = availability === "available";
+      filtered = filtered.filter((p) => p.inStock === isAvailable);
     }
+  
     setFilteredProducts(filtered);
   };
-
+  
+  const handleStockChange = (id: number, updatedStock: number) => {
+    setProducts((prev) =>
+      prev.map((product) =>
+        product.id === id ? { ...product, stock: updatedStock } : product
+      )
+    );
+  };
+  
   const handleAction = (action: string) => {
+    setSelectedAction(action); // Track the selected action
+    
+    const updatedProducts = products.map((p) => {
+      if (selectedProducts.includes(p.id)) {
+        switch (action) {
+          case "available":
+            return { ...p, inStock: true };
+          case "not available":
+            return { ...p, inStock: false, stock: 0 };
+          default:
+            return p;
+        }
+      }
+      return p;
+    });
+  
     switch (action) {
       case "available":
-        setProducts((prev) =>
-          prev.map((p) =>
-            selectedProducts.includes(p.id) ? { ...p, status: "available" } : p
-          )
-        );
-        break;
       case "not available":
-        setProducts((prev) =>
-          prev.map((p) =>
-            selectedProducts.includes(p.id) ? { ...p, status: "not available" } : p
-          )
-        );
+        setProducts(updatedProducts);
         break;
       case "delete":
-        setProducts((prev) => prev.filter((p) => !selectedProducts.includes(p.id)));
+        setProducts(products.filter((p) => !selectedProducts.includes(p.id)));
         setSelectedProducts([]);
         break;
       case "edit":
@@ -170,8 +208,11 @@ const AdminProduct: React.FC = () => {
       default:
         break;
     }
+  
+    setSelectedAction("Actions"); // Reset the dropdown to the default option
   };
-
+  
+  
   const toggleSelect = (id: number) => {
     setSelectedProducts((prev) =>
       prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
@@ -183,8 +224,8 @@ const AdminProduct: React.FC = () => {
       <h1 className="header">Admin Product Management</h1>
       <div className="filters">
         <select onChange={(e) => setCategory(e.target.value)}>
-          <option value="">All Categories</option>
-          <option value="iphone">Apple</option>
+          <option value="All Categories">All Categories</option>
+          <option value="apple">Apple</option>
           <option value="samsung">Samsung</option>
           <option value="pixel">Pixel</option>
           <option value="xiaomi">Xiaomi</option>
@@ -192,21 +233,24 @@ const AdminProduct: React.FC = () => {
         </select>
         <select onChange={(e) => setAvailability(e.target.value)}>
           <option>All Products</option>
-          <option>available</option>
-          <option>not available</option>
+          <option value="available">Available</option>
+          <option value="not available">Not available</option>
         </select>
         <button className="search-button" onClick={handleSearch}>Search for Product</button>
       </div>
 
       <div className="actions">
-        <select onChange={(e) => handleAction(e.target.value)}>
-          <option>Actions</option>
+      <select
+        value={selectedAction}
+        onChange={(e) => handleAction(e.target.value)}
+      >
+          <option className="actions-inactive">Actions</option>
           <option value="available">Mark as Available</option>
           <option value="not available">Mark as Not Available</option>
           <option value="delete">Delete</option>
           <option value="edit">Edit</option>
         </select>
-        <button onClick={() => setIsAdding(true)}>Add Product</button>
+        <button className="add-button" onClick={() => setIsAdding(true)}>Add Product</button>
       </div>
 
       <table>
@@ -246,12 +290,27 @@ const AdminProduct: React.FC = () => {
               <td>
                 <span
                   className={`status-indicator ${
-                    product.status === "available" ? "green" : "red"
+                    product.inStock === true ? "green" : "red"
                   }`}
                 ></span>
-                {product.status}
+                {product.inStock ? "Available" : "Not Available"}
               </td>
-              <td>{product.stock > 0 ? product.stock : "-"}</td>
+              <td>
+                {product.inStock ? (
+                  <input
+                    type="number"
+                    value={product.stock}
+                    min="0"
+                    onChange={(e) => {
+                      const updatedStock = parseInt(e.target.value, 10) || 0;
+                      handleStockChange(product.id, updatedStock);
+                    }}
+                    className="stock-input"
+                  />
+                ) : (
+                  "-"
+                )}
+              </td>
               <td>
                 {product.price > 0
                   ? `Rs. ${product.price.toLocaleString()}.00`
@@ -259,7 +318,8 @@ const AdminProduct: React.FC = () => {
               </td>
             </tr>
           ))}
-        </tbody>
+</tbody>
+
       </table>
 
       {/* Uncomment when AddProductPopup and EditProductPopup components are available */}
