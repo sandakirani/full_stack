@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./AdminProduct.css";
+import AddProduct from "./AddProduct";
 
 import spromaxblack from "../assets/Apple/iPhone 16 Pro Max Black Titanium.jpg";
 import spromaxdesert from "../assets/Apple/iPhone 16 Pro Max Desert Titanium.jpg";
@@ -131,42 +132,73 @@ const xiaomiProducts: ProductType[] = [
 const allProducts: ProductType[] = [...appleProducts, ...samsungProducts, ...pixelProducts, ...vivoProducts, ...xiaomiProducts];
 
 const AdminProduct: React.FC = () => {
-  
-  const [products, setProducts] = useState<ProductType[]>([...appleProducts, ...samsungProducts, ...pixelProducts, ...vivoProducts, ...xiaomiProducts]);
+  const [products, setProducts] = useState<ProductType[]>([
+    ...appleProducts,
+    ...samsungProducts,
+    ...pixelProducts,
+    ...vivoProducts,
+    ...xiaomiProducts,
+  ]);
+
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
-  const [isAdding, setIsAdding] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<ProductType | null>(null);
   const [category, setCategory] = useState("All Categories");
   const [availability, setAvailability] = useState("All Products");
   const [selectedAction, setSelectedAction] = useState("Actions");
+
   useEffect(() => {
     setFilteredProducts(products);
   }, [products]);
+
+  //Prevent background scrolling when Add Product is open
+  useEffect(() => {
+    if (isPopupOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isPopupOpen]);
   
+
+  const handleAddProduct = (newProduct: Omit<ProductType, "id" | "inStock">) => {
+    const newId = products.length > 0 ? Math.max(...products.map((p) => p.id)) + 1 : 1;
+    const newProductWithId: ProductType = {
+      ...newProduct,
+      id: newId,
+      inStock: newProduct.stock > 0, // Set inStock based on stock count
+    };
+    setProducts((prev) => [...prev, newProductWithId]);
+  };
+  
+
+  const handleUpdateProduct = (updatedProduct: ProductType) => {
+    setProducts((prev) =>
+      prev.map((product) => (product.id === updatedProduct.id ? updatedProduct : product))
+    );
+  };
 
   const handleSearch = () => {
     if (category === "All Categories" && availability === "All Products") {
       setFilteredProducts(products);
       return;
     }
-  
+
     let filtered = products;
-  
+
     if (category !== "All Categories") {
-      filtered = filtered.filter((p) =>
-        p.brand.toLowerCase() === category.toLowerCase()
-      );
+      filtered = filtered.filter((p) => p.brand.toLowerCase() === category.toLowerCase());
     }
-  
+
     if (availability !== "All Products") {
       const isAvailable = availability === "available";
       filtered = filtered.filter((p) => p.inStock === isAvailable);
     }
-  
+
     setFilteredProducts(filtered);
   };
-  
+
   const handleStockChange = (id: number, updatedStock: number) => {
     setProducts((prev) =>
       prev.map((product) =>
@@ -174,45 +206,48 @@ const AdminProduct: React.FC = () => {
       )
     );
   };
-  
+
   const handleAction = (action: string) => {
-    setSelectedAction(action); // Track the selected action
-    
-    const updatedProducts = products.map((p) => {
-      if (selectedProducts.includes(p.id)) {
-        switch (action) {
-          case "available":
-            return { ...p, inStock: true };
-          case "not available":
-            return { ...p, inStock: false, stock: 0 };
-          default:
-            return p;
-        }
+    setSelectedAction(action);
+
+    if (action === "edit") {
+      const productToEdit = products.find((p) => selectedProducts.includes(p.id));
+      if (productToEdit) {
+        setEditingProduct(productToEdit);
+        setIsPopupOpen(true);
       }
-      return p;
-    });
-  
-    switch (action) {
-      case "available":
-      case "not available":
-        setProducts(updatedProducts);
-        break;
-      case "delete":
-        setProducts(products.filter((p) => !selectedProducts.includes(p.id)));
-        setSelectedProducts([]);
-        break;
-      case "edit":
-        const productToEdit = products.find((p) => selectedProducts.includes(p.id));
-        if (productToEdit) setEditingProduct(productToEdit);
-        break;
-      default:
-        break;
+    } else {
+      const updatedProducts = products.map((p) => {
+        if (selectedProducts.includes(p.id)) {
+          switch (action) {
+            case "available":
+              return { ...p, inStock: true };
+            case "not available":
+              return { ...p, inStock: false, stock: 0 };
+            default:
+              return p;
+          }
+        }
+        return p;
+      });
+
+      switch (action) {
+        case "available":
+        case "not available":
+          setProducts(updatedProducts);
+          break;
+        case "delete":
+          setProducts(products.filter((p) => !selectedProducts.includes(p.id)));
+          setSelectedProducts([]);
+          break;
+        default:
+          break;
+      }
     }
-  
-    setSelectedAction("Actions"); // Reset the dropdown to the default option
+
+    setSelectedAction("Actions");
   };
-  
-  
+
   const toggleSelect = (id: number) => {
     setSelectedProducts((prev) =>
       prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
@@ -236,21 +271,28 @@ const AdminProduct: React.FC = () => {
           <option value="available">Available</option>
           <option value="not available">Not available</option>
         </select>
-        <button className="search-button" onClick={handleSearch}>Search for Product</button>
+        <button className="search-button" onClick={handleSearch}>
+          Search for Product
+        </button>
       </div>
 
       <div className="actions">
-      <select
-        value={selectedAction}
-        onChange={(e) => handleAction(e.target.value)}
-      >
+        <select value={selectedAction} onChange={(e) => handleAction(e.target.value)}>
           <option className="actions-inactive">Actions</option>
           <option value="available">Mark as Available</option>
           <option value="not available">Mark as Not Available</option>
           <option value="delete">Delete</option>
           <option value="edit">Edit</option>
         </select>
-        <button className="add-button" onClick={() => setIsAdding(true)}>Add Product</button>
+        <button
+          className="add-button"
+          onClick={() => {
+            setEditingProduct(null); // Ensure fields are empty
+            setIsPopupOpen(true);
+          }}
+        >
+          Add Product
+        </button>
       </div>
 
       <table>
@@ -279,19 +321,16 @@ const AdminProduct: React.FC = () => {
                 <img src={product.image} alt={product.name} className="product-image" />
               </td>
               <td>
-                <div className="product-name"><strong>{product.name}</strong></div>
+                <div className="product-name">
+                  <strong>{product.name}</strong>
+                </div>
               </td>
               <td>
-                <div
-                  className="color-circle"
-                  style={{ backgroundColor: product.color }}
-                ></div>
+                <div className="color-circle" style={{ backgroundColor: product.color }}></div>
               </td>
               <td>
                 <span
-                  className={`status-indicator ${
-                    product.inStock === true ? "green" : "red"
-                  }`}
+                  className={`status-indicator ${product.inStock ? "green" : "red"}`}
                 ></span>
                 {product.inStock ? "Available" : "Not Available"}
               </td>
@@ -311,23 +350,37 @@ const AdminProduct: React.FC = () => {
                   "-"
                 )}
               </td>
-              <td>
-                {product.price > 0
-                  ? `Rs. ${product.price.toLocaleString()}.00`
-                  : "-"}
-              </td>
+              <td>{product.price > 0 ? `Rs. ${product.price.toLocaleString()}.00` : "-"}</td>
             </tr>
           ))}
-</tbody>
-
+        </tbody>
       </table>
 
-      {/* Uncomment when AddProductPopup and EditProductPopup components are available */}
-      {/* {isAdding && <AddProductPopup onClose={() => setIsAdding(false)} onAdd={setProducts} />}
-      {editingProduct && <EditProductPopup product={editingProduct} onClose={() => setEditingProduct(null)} onUpdate={setProducts} />} */}
+      {/* Popup for Adding or Editing Products */}
+      {isPopupOpen && (
+  <div className="modal-overlay">
+    <AddProduct
+      isOpen={isPopupOpen}
+      onClose={() => {
+        setIsPopupOpen(false);
+        setEditingProduct(null);
+      }}
+      onSubmit={(product) => {
+        if (editingProduct) {
+          handleUpdateProduct({ ...editingProduct, ...product });
+        } else {
+          handleAddProduct(product);
+        }
+      }}
+      editingProduct={editingProduct}
+    />
+  </div>
+)}
+
     </div>
   );
 };
 
 export default AdminProduct;
+
 
