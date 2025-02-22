@@ -1,0 +1,103 @@
+.add-product-container {
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.modal-content {
+  width: 100%;
+  max-height: 90vh;
+  background: white;
+  padding: 0px;
+  border-radius: 10px;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.image-upload-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px; 
+  margin-bottom: 20px;
+}
+
+.image-upload-box {
+  width: 90%;
+  max-width: 500px;
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.image-upload-box img {
+  width: 50px;
+  height: 50px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  max-height: 60vh; 
+  margin-bottom: 250px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #eaeaea;
+}
+
+.add-button1-container {
+  display: flex;
+  justify-content: center; 
+  width: 100%;
+  margin-top: auto;
+}
+
+.add-button1 {
+  background: #1a1a3f;
+  color: white;
+  padding: 10px 30px;
+  margin: 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-button1:hover {
+  background: #26265a;
+}
+
