@@ -29,8 +29,12 @@
   font-size: 24px;
 }
 
+.back-button:hover {
+  transform: scale(1.2); /* Enlarge arrow */
+}
+
 .image-upload-container {
-  display: flex;
+  display:flex;
   justify-content: center;
   margin-top: 60px; 
   margin-bottom: 20px;
@@ -50,6 +54,16 @@
   width: 50px;
   height: 50px;
 }
+
+.preview {
+  width: 300px;  
+  height: auto;
+  object-fit: cover; 
+  border-radius: 10px; 
+  display: block; /* Ensures no extra space around the image */
+  margin: 10px auto;
+}
+
 
 .form-grid {
   display: grid;
@@ -78,6 +92,22 @@
   border-radius: 5px;
   background: #eaeaea;
 }
+
+.color-value { 
+  display: flex; 
+  align-items: center; 
+  gap: 20px;
+}
+
+.color-picker {
+  width: 50px;  
+  height: 40px; 
+  border: none; 
+  cursor: pointer; 
+  padding: 0;
+  border-radius: 50%;
+}
+
 
 .add-button1-container {
   display: flex;
