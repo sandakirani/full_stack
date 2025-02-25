@@ -114,47 +114,6 @@ button:hover {
   font-weight: bold;
 }
 
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #1f2937;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 90%; /* Make popups responsive */
-  max-width: 500px;
-}
-
-.popup input, .popup select {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  background-color: #2d3748;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
-.popup-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.popup button {
-  background-color: #374151;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-.popup button:hover {
-  background-color: #4b5563;
-}
-
 /* Ensure full width for table container */
 table {
   width: 100%;
@@ -236,7 +195,6 @@ input[type="checkbox"] {
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   width: 50%;
-  /*max-width: 600px;*/
   overflow-y: auto;  /* Enable scrolling */
   z-index: 1001;
 }
