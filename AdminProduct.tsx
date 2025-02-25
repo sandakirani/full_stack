@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./AdminProduct.css";
-import AddProduct from "./AddProduct";
+import AddProduct from "./AddProduct.tsx";
 
 import spromaxblack from "../assets/Apple/iPhone 16 Pro Max Black Titanium.jpg";
 import spromaxdesert from "../assets/Apple/iPhone 16 Pro Max Desert Titanium.jpg";
@@ -152,7 +152,7 @@ const AdminProduct: React.FC = () => {
     setFilteredProducts(products);
   }, [products]);
 
-  //Prevent background scrolling when Add Product is open
+  //Prevent background scrolling when Add or Edit Product is open
   useEffect(() => {
     if (isPopupOpen) {
       document.body.style.overflow = "hidden";
@@ -208,6 +208,9 @@ const AdminProduct: React.FC = () => {
   };
 
   const handleAction = (action: string) => {
+    if (!selectedProducts || selectedProducts.length === 0) {
+      alert("Please choose some products!");
+    }
     setSelectedAction(action);
 
     if (action === "edit") {
