@@ -1,0 +1,120 @@
+/* Style for the container to span the entire screen */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+     /* Optional background color */
+}
+
+/* Updated cart-item to adjust its width */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    background-color: #304566;
+    color: white;
+    width: 90%;
+    max-width: 1200px;
+    margin: 10px auto;
+}
+
+.item-name {
+    flex: 2;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    padding: 5px;
+    background-color: white;
+    color: #304566;
+    border: none;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.quantity-controls button:hover {
+    background-color: #f0f0f0; /* Hover effect */
+}
+
+.quantity-controls input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    background-color: white;
+    color: #304566;
+}
+
+.item-total-price {
+    flex: 1;
+    text-align: right;
+}
+
+/* Cart total and Order Now section with grey background and sticky position */
+.cart-total-container {
+    position: sticky;
+    bottom: 0;
+    padding: 10px 20px;
+    background-color: grey; /* Grey background */
+    width: 100%;
+    text-align: center;
+    border-top: 2px solid #ccc; /* Optional: Add a border at the top */
+    z-index: 10; /* Ensure it stays on top */
+}
+
+.cart-total {
+    font-weight: bold;
+
+}
+
+#order-now {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #304566;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+#order-now:hover {
+    background-color: #253552; /* Hover effect */
+}
+
+/* Scrollable product list */
+.product-list {
+    max-height: 70vh; /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-name,
+    .item-total-price {
+        text-align: left;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .quantity-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
