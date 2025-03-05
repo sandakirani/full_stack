@@ -8,7 +8,6 @@ import Navbar from '../Header/Navbar';
 import Footer from '../Footer/Footer';
 import './Wishlist.css';
 
-// Define the expected type
 interface WishlistItem {
   id: number;
   name: string;
@@ -53,6 +52,33 @@ const WishlistPage: React.FC = () => {
     navigate('/home');
   };
 
+  const brandMapping: { [key: string]: string } = {
+    iphone: "AppleProducts",
+    samsung: "SamsungProducts",
+    pixel: "PixelProducts",
+    vivo: "VivoProducts",
+    xiaomi: "XiaomiProducts",
+  };
+  
+  const getBrandFromName = (productName: string): string | null => {
+    const nameLower = productName.toLowerCase();
+    for (const keyword in brandMapping) {
+      if (nameLower.includes(keyword)) {
+        return brandMapping[keyword];
+      }
+    }
+    return null; // Return null if no match is found
+  };
+  
+  const handleImageClick = (productId: number) => {
+    const product = wishlist.find((item) => item.id === productId);
+    if (product) {
+      const brand = getBrandFromName(product.name) || "unknown";
+      navigate(`/${brand}/${productId}`);
+    }
+  };
+
+
   return (
     <div className="wishlist-page">
       <Navbar />
@@ -79,11 +105,11 @@ const WishlistPage: React.FC = () => {
             {wishlist.map((item: WishlistItem) => (
               <div className="wishlist-item" key={item.id}>
                 <div className="item-actions">
-                  <button className="remove" onClick={() => removeFromWishlist(item.id)}>Remove</button>
+                  <button className="remove" onClick={() => removeFromWishlist(item.id)}>x</button>
                   <input type="checkbox" checked={selectedItems.includes(item.id)} onChange={() => handleSelect(item.id)} />
                 </div>
                 <div className="item-details">
-                  <img src={item.image} alt={item.name} />
+                  <img src={item.image} alt={item.name} onClick={() => handleImageClick(item.id)}/>
                   <div className="details">
                     <h3>{item.name}</h3>
                     <p>{item.price}</p>
