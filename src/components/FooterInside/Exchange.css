@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: white; /* Change text color to white for better contrast */
+  background-size: cover; /* Ensures the image covers the entire viewport */
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Ensures the background image takes up the full viewport */
+  height: 100%; /* Ensures the body height covers the full viewport */
+  background-attachment: fixed; /* Keeps the background fixed when scrolling */
+}
+
+
+.Head {
+  color: #ffffff;
+}
+
+.returns-container {
+  margin: 50px 100px;
+  background-color: rgba(0, 0, 0, 0.8);
+  max-width: 80%;
+  padding: 20px;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px; /* Add rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Add box shadow */
+}
+
+h1 {
+  font-size: 2.5rem; /* Match the font size */
+  font-weight: bold;
+  text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Add text shadow */
+}
+
+p {
+  font-size: 1rem; /* Match the font size */
+  color: #bbb; /* Adjust color for better readability */
+}
+
+.accordion {
+  margin-top: 20px;
+}
+
+.accordion-item {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.8); /* Match background color */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Add box shadow */
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 15px;
+  text-align: left;
+  background: rgba(47, 45, 45, 0.8);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.accordion-header:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.accordion-content {
+  padding: 15px;
+  background: #191717;
+  text-align: left;
+  color: #333; /* Change text color to dark for readability */
+}
+
+.newsletter {
+  margin-top: 40px;
+  padding: 20px;
+  background: #342f2f;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Add box shadow */
+}
+
+.newsletter h3 {
+  font-size: 20px;
+}
+
+.newsletter-input {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.newsletter-input input {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+.newsletter-input button {
+  padding: 10px 20px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.newsletter-input button:hover {
+  background: #34495e;
+  border: none;
+}
+
+.signup {
+  color: rgba(0, 0, 0, 0.8);
+  font-family: 'Times New Roman', Times, serif;
+}

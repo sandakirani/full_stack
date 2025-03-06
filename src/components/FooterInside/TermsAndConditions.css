@@ -1,0 +1,60 @@
+.terms-conditions-page {
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  color: #fff;
+  background-image: url('../assets/login_background.png');
+}
+
+.terms-conditions-content {
+  max-width:1400px;
+  margin: 0 auto;
+  padding: 20px;
+
+
+}
+
+h1 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.terms-list {
+  margin-top: 20px;
+}
+
+.term-item {
+  margin-bottom: 15px;
+}
+
+.term-header {
+  display: flex;
+  justify-content: space-between;
+  background: #333;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.term-popup {
+  margin-top: 10px;
+  background: #05395b;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+.Paragraph{
+
+font-size: 20px;
+font-family: 'Times New Roman', Times, serif;}
