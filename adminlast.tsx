@@ -209,4 +209,65 @@ const AdminPage: React.FC = () => {
         <button onClick={() => setIsAdding(true)}>Add Product</button>
       </div>
 
-      
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Status</th>
+            <th>Stock</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredProducts.map((product) => (
+            <tr key={product.id}>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={selectedProducts.includes(product.id)}
+                  onChange={() => toggleSelect(product.id)}
+                />
+              </td>
+              <td>
+                <img src={product.image} alt={product.name} className="product-image" />
+              </td>
+              <td>
+                <div className="product-name"><strong>{product.name}</strong></div>
+              </td>
+              <td>
+                <div
+                  className="color-circle"
+                  style={{ backgroundColor: product.color }}
+                ></div>
+              </td>
+              <td>
+                <span
+                  className={`status-indicator ${
+                    product.status === "available" ? "green" : "red"
+                  }`}
+                ></span>
+                {product.status}
+              </td>
+              <td>{product.stock > 0 ? product.stock : "-"}</td>
+              <td>
+                {product.price > 0
+                  ? `Rs. ${product.price.toLocaleString()}.00`
+                  : "-"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Uncomment when AddProductPopup and EditProductPopup components are available */}
+      {/* {isAdding && <AddProductPopup onClose={() => setIsAdding(false)} onAdd={setProducts} />}
+      {editingProduct && <EditProductPopup product={editingProduct} onClose={() => setEditingProduct(null)} onUpdate={setProducts} />} */}
+    </div>
+  );
+};
+
+export default AdminPage;
+
