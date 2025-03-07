@@ -1,0 +1,195 @@
+.admin-product {
+    width: 100vw; /* Full viewport width */
+    background-color: #eff2fb;
+    color: #121826;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0; 
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+  
+  .header {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #1c2739;
+  }
+  
+  .filters, .actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .filters {
+    margin: auto;
+    margin-right: 70px;
+    width: 70%;
+    padding: 30px;
+  }
+  
+  .filters select {
+    margin-right: 20px;
+  }
+  
+  select, button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  select {
+    background-color: #1f2937;
+    color: white;
+  }
+  
+  button {
+    background-color: #374151;
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #4b5563;
+  }
+  
+  .search-button {
+    margin-left: 70px;
+    padding: 10px;
+  }
+  
+  .product-list {
+    width: 100%;
+    background: #1f2937;
+    padding: 15px;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  
+  .product-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .product-list th, .product-list td {
+    padding: 10px;
+    border-bottom: 1px solid #374151;
+    text-align: left;
+  }
+  
+  .product-list th {
+    background-color: #374151;
+  }
+  
+  .product-list tr:nth-child(even) {
+    background-color: #252f3f;
+  }
+  
+  .product-list input[type="checkbox"] {
+    transform: scale(1.2);
+  }
+  
+  .status-available {
+    color: limegreen;
+    font-weight: bold;
+  }
+  
+  .status-not-available {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Make popups responsive */
+    max-width: 500px;
+  }
+  
+  .popup input, .popup select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #2d3748;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .popup-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .popup button {
+    background-color: #374151;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .popup button:hover {
+    background-color: #4b5563;
+  }
+  
+  /* Ensure full width for table container */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .product-image {
+    width: 50px;
+    height: 50px;
+    object-fit:contain;
+    margin-right: 10px;
+    border-radius: 8px;
+  }
+  
+  .product-name {
+    padding: 5px 0;
+  }
+  
+  .color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  
+  .green {
+    background-color: green;
+  }
+  
+  .red {
+    background-color: red;
+  }
+  
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+  
