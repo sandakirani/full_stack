@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #fff;
+  background-image: url("../../assets/Logo/login_background.png");
+  background-size: cover; /* Ensures the image covers the entire viewport */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Ensures the background image takes up the full viewport */
+  background-attachment: fixed; /* Keeps the background fixed when scrolling */
+}
+
+.privacy-policy-container {
+  width: 80%; /* Controls the width of the container */
+  max-width: 1200px; /* Ensures the container doesn't get too wide on large screens */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8); /* Black color with slight transparency */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2; /* Ensures content stays on top of the background */
+  position: relative;
+}
+
+.privacy-policy-title {
+  text-align: left;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+ul {
+  margin: 10px 0 20px 20px;
+  list-style-type: disc;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .privacy-policy-container {
+    width: 90%; /* Adjusts the width for smaller screens */
+    padding: 10px; /* Adjusts the padding for smaller screens */
+  }
+
+  .privacy-policy-title {
+    font-size: 1.5rem; /* Adjusts the title size for smaller screens */
+  }
+
+  h2 {
+    font-size: 1.25rem; /* Adjusts the heading size for smaller screens */
+  }
+
+  p, li {
+    font-size: 1rem; /* Adjusts the paragraph and list item size for smaller screens */
+  }
+}

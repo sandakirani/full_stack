@@ -1,0 +1,231 @@
+.footer-container {
+  background-color: white;
+  color: #333;
+  font-family: Arial, sans-serif;
+  opacity: 88%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center contents horizontally */
+  width: 100%;
+  padding: 40px 20px;
+  text-align: left;
+  box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+  max-width: 1200px; /* Set a max-width to center the container */
+  margin: 0 auto; /* Center the container */
+}
+
+/* Footer Content */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Ensure footer-content takes full width */
+  flex-wrap: wrap; /* Ensure flex-wrap is set to wrap */
+  gap: 20px; /* Adjust gap between items */
+}
+
+/* Contact Info */
+.contact-info {
+  flex: 1; /* Distribute space evenly */
+  min-width: 200px; /* Ensure a minimum width */
+  max-width: 30%; /* Limit maximum width */
+  text-align: left;
+  padding-right: 20px; 
+  box-sizing: border-box;
+}
+
+.contact-info p,
+address {
+  margin: 5px 0;
+}
+
+.contact-table td {
+  padding: 5px 30px; /* Increase padding inside the table */
+}
+
+/* Email Hover */
+.email:hover {
+  color: #16263E;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.icon {
+  color: black;
+  font-size: 30px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.icon:hover {
+  color: #007bff;
+}
+
+/* Social Media Hover Effects */
+.facebook:hover {
+  color: #3b5998;
+}
+
+.whatsapp:hover {
+  color: #25d366;
+}
+
+.instagram:hover {
+  color: #e4405f;
+}
+
+/* Logo Container */
+.l-container {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%; /* Use 100% width for responsiveness */
+  max-width: 400px; /* Limit maximum width */
+}
+
+.logofooter {
+  width: 100%; /* Use 100% width for responsiveness */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Footer Links */
+.footer-links {
+  flex: 1; /* Distribute space evenly */
+  min-width: 200px; /* Ensure a minimum width */
+  max-width: 35%; /* Limit maximum width */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 10px;
+}
+
+.footer-links h4 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li a {
+  margin-bottom: 5px;
+  color: black;
+  text-decoration: none;
+}
+
+.footer-links ul li a:hover {
+  color: blue;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #16263E;
+  background-color: #16263E;
+  font-size: 12px;
+  padding: 15px;
+  width: 100%;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: white;
+}
+
+/* ----------------- RESPONSIVE MEDIA QUERIES ----------------- */
+
+/* Tablet View (768px and below) */
+@media screen and (max-width: 768px) {
+  .footer-container {
+    padding: 20px 10px;
+    height: auto;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .contact-info,
+  .footer-links {
+    width: 80%;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .l-container {
+    width: 200px;
+  }
+
+  .logofooter {
+    width: 150px;
+    height: auto;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-links h4 {
+    font-size: 18px;
+  }
+}
+
+/* Mobile View (480px and below) */
+@media screen and (max-width: 480px) {
+  .footer-container {
+    padding: 10px;
+    height: auto;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .contact-info,
+  .footer-links {
+    width: 100%;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .icon {
+    font-size: 25px;
+  }
+
+  .footer-bottom {
+    font-size: 10px;
+    padding: 10px;
+  }
+
+  .logofooter {
+    width: 120px;
+    height: auto;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}

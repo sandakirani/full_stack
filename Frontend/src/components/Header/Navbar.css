@@ -1,0 +1,145 @@
+.navbar {
+  background-color: #D9D9D9;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: auto; /* Allow height to adjust based on content */
+  flex-wrap: wrap; /* Allow items to wrap */
+  border-radius: 20px; /* Add rounded corners */
+}
+
+.logo1 {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px; /* Add margin to create space between logo and search bar */
+}
+
+.search-bar {
+  flex-grow: 1;
+  margin: 0 15px;
+  padding: 8px;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensure full width for better responsiveness */
+  max-width: 600px; /* Limit maximum width */
+}
+
+.search-input {
+  padding: 10px 40px 10px 20px;
+  border: none;
+  border-radius: 20px;
+  width: 100%; /* Ensure full width */
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.fa-search {
+  position: absolute;
+  top: 50%;
+  left: 15px; /* Adjust left position for better alignment */
+  transform: translateY(-50%);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.search-bar input:focus {
+  outline: none;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Reduce gap for better alignment */
+  margin-right: 20px;
+  flex-wrap: wrap; /* Allow items to wrap */
+}
+
+.icon-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.icon1 {
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #243653;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+.account {
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .logo1 {
+    width: 80px; /* Adjust logo size for smaller screens */
+    height: 80px;
+    margin-bottom: 10px; /* Add margin to create space between items */
+  }
+
+  .search-bar {
+    margin: 10px 0; /* Adjust margin for better spacing */
+  }
+
+  .icons-container {
+    justify-content: center; /* Center icons */
+    width: 100%; /* Ensure full width */
+  }
+
+  .icon1 {
+    font-size: 18px; /* Adjust icon size */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 10px; /* Adjust padding */
+  }
+
+  .logo1 {
+    width: 60px; /* Further adjust logo size */
+    height: 60px;
+  }
+
+  .search-bar {
+    margin: 5px 0; /* Further adjust margin */
+  }
+
+  .fa-search {
+    left: 10px; /* Adjust left position for better alignment */
+  }
+
+  .icon1 {
+    font-size: 16px; /* Further adjust icon size */
+  }
+}

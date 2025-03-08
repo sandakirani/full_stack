@@ -1,0 +1,51 @@
+.home {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin: 40px 0px 10px;
+  color: white;
+  text-align: left;
+  z-index: 1; /* Ensures the text appears above the video */
+}
+
+.background-video1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the whole background */
+  z-index: -1; /* Puts the video behind the content */
+}
+
+/* Responsive Media Queries */
+
+/* Tablet View (768px and below) */
+@media screen and (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+    margin: 30px 0px 10px;
+  }
+
+  .home {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+}
+
+/* Mobile View (480px and below) */
+@media screen and (max-width: 480px) {
+  .section-title {
+    font-size: 1.2rem; /* Further adjust font size for mobile screens */
+    margin: 20px 0px 10px;
+  }
+
+  .home {
+    padding: 5px; /* Further adjust padding for mobile screens */
+  }
+}
