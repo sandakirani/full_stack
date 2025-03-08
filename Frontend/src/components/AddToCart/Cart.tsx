@@ -64,6 +64,52 @@ import foplusred from '../../assets/Apple/iPhone 14 Plus red.jpg';
 import foplusstarlight from '../../assets/Apple/iPhone 14 Plus starlight.webp';
 import foplusyellow from '../../assets/Apple/iPhone 14 Plus yellow.jpg';
 
+import V21blue from '../../assets/vivo/Vivo V21 5G Dusk Blue.jpg';
+import V21sunset from '../../assets/vivo/Vivo V21 5G Sunset Dazzle.jpg';
+import Y1s3GBblue from '../../assets/vivo/Vivo Y1s 3GB Aurora Blue.jpg';
+import Y1s3GBblack from '../../assets/vivo/Vivo Y1s 3GB Olive Black.jpg';
+import V20SEblack from '../../assets/vivo/Vivo V20 SE Gravity Black.jpg';
+import V20SEblue from '../../assets/vivo/Vivo V20 SE Oxygen Blue.jpg';
+import V20sunset from '../../assets/vivo/Vivo V20  Sunset Melody.webp';
+import V20midnight from '../../assets/vivo/Vivo V20 Midnight Jazz.jpg';
+import Y27sblack from '../../assets/vivo/Vivo Y27S Burgundy Black.jpg';
+import Y27sgreen from '../../assets/vivo/Vivo Y27S Garden Green.png';
+import Y22sblue from '../../assets/vivo/Vivo Y22s  Starlit Blue.jpg';
+import Y22scyan from '../../assets/vivo/Vivo Y22s  Summer Cyan.jpg';
+import Y17sgreen from '../../assets/vivo/Vivo Y17S Forest Green.png';
+import Y17spurple from '../../assets/vivo/Vivo Y17S Glitter Purple.png';
+import Y19sblack from '../../assets/vivo/Vivo Y19s Glossy Black.jpg';
+import Y19ssilver from '../../assets/vivo/Vivo Y19s Pearl Silver.jpg';
+import V295Gblack from '../../assets/vivo/Vivo V29 5G Forest Black.jpg';
+import V295Gmagic from '../../assets/vivo/Vivo V29 5G Magic Maroon.jpeg';
+import V295Gpink from '../../assets/vivo/Vivo V29 5G Rose Pink.jpg';
+import V295Gice from '../../assets/vivo/Vivo V29 5G ice Creek Blue.jpg';
+
+import ultra14black from '../../assets/Xiaomi/Xiaomi 14 Ultra black.jpg';
+import ultra14white from '../../assets/Xiaomi/Xiaomi 14 Ultra white.jpg';
+import Note13proplusblack from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Midnight Black.jpg';
+import Note13proplusgreen from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Mint Green.jpg';
+import Note13proplusblue from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro+ Ice Blue.jpg';
+import Note13problack from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Midnight Black.jpg';
+import Note13proWhite from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Arctic White.jpg';
+import Note13propurple from '../../assets/Xiaomi/Xiaomi Redmi Note 13 Pro Lavender Purple.jpg';
+import Note13black from '../../assets/Xiaomi/Xiaomi Redmi Note 13  Midnight Black.jpg';
+import Note13green from '../../assets/Xiaomi/Xiaomi Redmi Note 13  Mint Green.jpg';
+import Note13blue from '../../assets/Xiaomi/Xiaomi Redmi Note 13  Ice Blue.jpg';
+import Note13sunset from '../../assets/Xiaomi/Xiaomi Redmi Note 13  Ocean Sunset.webp';
+import Note12sblack from '../../assets/Xiaomi/Xiaomi Redmi Note 12S Onyx Black.jpg';
+import Note12sgreen from '../../assets/Xiaomi/Xiaomi Redmi Note 12S Pearl Green.jpg';
+import Note12sblue from '../../assets/Xiaomi/Xiaomi Redmi Note 12S ice blue.png';
+import Note12proplusblack from '../../assets/Xiaomi/Xiaomi Redmi Note 12 pro+  Midnight Black.jpg';
+import Note12propluswhite from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Polar White.jpg';
+import Note12proplusblue from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro+ Sky Blue.jpg';
+import Note12problack from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Onyx Black.png';
+import Note12problue from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Frosted Blue.jpg';
+import Note12propurple from '../../assets/Xiaomi/Xiaomi Redmi Note 12 Pro Stardust Purple.jpg';
+import Note14proplusblack from '../../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ Titan Black.jpg';
+import Note14propluspurple from '../../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ phantom Purple.jpg';
+import Note14proplusblue from '../../assets/Xiaomi/Xiaomi Redmi Note 14 Pro+ spectre Blue.jpg';
+
 interface Item {
   id: string;
   name: string;
@@ -147,40 +193,40 @@ const Cart: React.FC = () => {
       //{ name: 'iPhone 14 ', price: 409900, quantity: 0, imageUrl: '/assets/phone.png' },   
 
      //vivo
-     { id:'VV201',name: 'Vivo V20 ', price: 80000, quantity: 0, imageUrl: 'src/assets/vivo/vivo/Vivo V20  Sunset Melody.webp' },   
-     { id:'VV202',name: 'Vivo V20 ', price: 80000, quantity: 0, imageUrl: 'src/assets/vivo/vivo/Vivo V20 Midnight Jazz.jpg' },   
-     { id:'VV20SE1',name: 'Vivo V20 SE', price: 85000, quantity: 0, imageUrl: 'src/assets/vivo/vivo/Vivo V20 SE Gravity Black.jpg' },   
-     { id:'VV20SE2',name: 'Vivo V20 SE', price: 85000, quantity: 0, imageUrl: 'src/assets/vivo/vivo/Vivo V20 SE Oxygen Blue.jpg' },   
-     { id:'VV211',name: 'Vivo V21 5G', price: 95000, quantity: 0, imageUrl: 'src/assets/vivo/vivo/Vivo V21 5G Dusk Blue.jpg' },   
-     { id:'VV212',name: 'Vivo V21 5G', price: 95000, quantity: 0, imageUrl: 'src/assets/vivo/vivo/Vivo V21 5G Sunset Dazzle.jpg' },   
-     { id:'VV291',name: 'Vivo V29 5G', price: 130000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo V29 5G Forest Black.jpg'},
-     { id:'VV292',name: 'Vivo V29 5G', price: 130000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo V29 5G ice Creek Blue.jpg'},
-     { id:'VV293',name: 'Vivo V29 5G', price: 130000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo V29 5G Magic Maroon.jpeg'},
-     { id:'VV294',name: 'Vivo V29 5G', price: 130000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo V29 5G Rose Pink.jpg'},
-     { id:'VY11',name: 'Vivo Y1s 3GB', price: 38000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo Y1s 3GB Aurora Blue.jpg'},   
-     { id:'VY12',name: 'Vivo Y1s 3GB', price: 38000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo Y1s 3GB Olive Black.jpg'},   
-     { id:'VY171',name: 'Vivo Y17S', price: 60000, quantity: 0, imageUrl: 'src/assets/vivo/vivo/Vivo Y17S Forest Green.png' },
-     { id:'VY172',name: 'Vivo Y17S', price: 60000, quantity: 0, imageUrl: 'src/assets/vivo/vivo/Vivo Y17S Glitter Purple.png' },
-     { id:'VY191',name: 'Vivo Y19s', price: 52000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo Y19s Glossy Black.jpg'},   
-     { id:'VY192',name: 'Vivo Y19s', price: 52000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo Y19s Pearl Silver.jpg'},   
-     { id:'VY221',name: 'Vivo Y22s', price: 65000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo Y22s  Starlit Blue.jpg'},   
-     { id:'VY222',name: 'Vivo Y22s', price: 65000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo Y22s  Summer Cyan.jpg'},   
-     { id:'VY271',name: 'Vivo Y27S', price: 95000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo Y27S Burgundy Black.jpg'},   
-     { id:'VY272',name: 'Vivo Y27S', price: 95000, quantity: 0 , imageUrl: 'src/assets/vivo/vivo/Vivo Y27S Garden Green.png'},  
+     { id:'VV201',name: 'Vivo V20 ', price: 80000, quantity: 0, imageUrl: V20sunset },   
+     { id:'VV202',name: 'Vivo V20 ', price: 80000, quantity: 0, imageUrl: V20midnight },   
+     { id:'VV20SE1',name: 'Vivo V20 SE', price: 85000, quantity: 0, imageUrl: V20SEblack },   
+     { id:'VV20SE2',name: 'Vivo V20 SE', price: 85000, quantity: 0, imageUrl: V20SEblue },   
+     { id:'VV211',name: 'Vivo V21 5G', price: 95000, quantity: 0, imageUrl: V21blue },   
+     { id:'VV212',name: 'Vivo V21 5G', price: 95000, quantity: 0, imageUrl: V21sunset },   
+     { id:'VV291',name: 'Vivo V29 5G', price: 130000, quantity: 0 , imageUrl: V295Gblack},
+     { id:'VV292',name: 'Vivo V29 5G', price: 130000, quantity: 0 , imageUrl: V295Gice},
+     { id:'VV293',name: 'Vivo V29 5G', price: 130000, quantity: 0 , imageUrl: V295Gmagic},
+     { id:'VV294',name: 'Vivo V29 5G', price: 130000, quantity: 0 , imageUrl: V295Gpink},
+     { id:'VY11',name: 'Vivo Y1s 3GB', price: 38000, quantity: 0 , imageUrl: Y1s3GBblue},   
+     { id:'VY12',name: 'Vivo Y1s 3GB', price: 38000, quantity: 0 , imageUrl: Y1s3GBblack},   
+     { id:'VY171',name: 'Vivo Y17S', price: 60000, quantity: 0, imageUrl: Y17sgreen },
+     { id:'VY172',name: 'Vivo Y17S', price: 60000, quantity: 0, imageUrl: Y17spurple },
+     { id:'VY191',name: 'Vivo Y19s', price: 52000, quantity: 0 , imageUrl: Y19sblack},   
+     { id:'VY192',name: 'Vivo Y19s', price: 52000, quantity: 0 , imageUrl: Y19ssilver},   
+     { id:'VY221',name: 'Vivo Y22s', price: 65000, quantity: 0 , imageUrl: Y22sblue},   
+     { id:'VY222',name: 'Vivo Y22s', price: 65000, quantity: 0 , imageUrl: Y22scyan},   
+     { id:'VY271',name: 'Vivo Y27S', price: 95000, quantity: 0 , imageUrl: Y27sblack},   
+     { id:'VY272',name: 'Vivo Y27S', price: 95000, quantity: 0 , imageUrl: Y27sgreen},  
      
   
      //xiaomi
-     { id:'X14U1',name: 'Xiaomi 14 Ultra', price: 399900, quantity: 0, imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi 14 Ultra black.jpg' }, 
-     { id:'X14U2',name: 'Xiaomi 14 Ultra', price: 399900, quantity: 0, imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi 14 Ultra white.jpg' }, 
-     { id:'X12P1',name: 'Xiaomi  Redmi Note 12 Pro', price: 89900, quantity: 0 , imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi Redmi Note 12 Pro Frosted Blue.jpg'},  
-     { id:'X12P2',name: 'Xiaomi  Redmi Note 12 Pro', price: 89900, quantity: 0 , imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi Redmi Note 12 Pro Onyx Black.png'},  
-     { id:'X12P3',name: 'Xiaomi  Redmi Note 12 Pro', price: 89900, quantity: 0 , imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi Redmi Note 12 Pro Stardust Purple.jpg'},  
-     { id:'X12PP1',name: 'Xiaomi  Redmi Note 12 Pro+', price: 120000, quantity: 0, imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi Redmi Note 12 pro+  Midnight Black.jpg' },
-     {  id:'X12PP2',name: 'Xiaomi  Redmi Note 12 Pro+', price: 120000, quantity: 0, imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi Redmi Note 12 Pro+ Polar White.jpg' },
-     {  id:'X12PP3',name: 'Xiaomi  Redmi Note 12 Pro+', price: 120000, quantity: 0, imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi Redmi Note 12 Pro+ Sky Blue.jpg' },
-     { id:'X121',name: 'Xiaomi Redmi Note 12S', price: 69500, quantity: 0 , imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi Redmi Note 12S ice blue.png'},   
-     { id:'X122',name: 'Xiaomi Redmi Note 12S', price: 69500, quantity: 0 , imageUrl: 'src/assets/Xiaomi/Xiaomi/Xiaomi Redmi Note 12S Onyx Black.jpg'},   
-     { id:'X123',name: 'Xiaomi Redmi Note 12S', price: 69500, quantity: 0 , imageUrl: '/assets/phone.png'},   
+     { id:'X14U1',name: 'Xiaomi 14 Ultra', price: 399900, quantity: 0, imageUrl: ultra14black }, 
+     { id:'X14U2',name: 'Xiaomi 14 Ultra', price: 399900, quantity: 0, imageUrl: ultra14white }, 
+     { id:'X12P1',name: 'Xiaomi  Redmi Note 12 Pro', price: 89900, quantity: 0 , imageUrl: Note12problue},  
+     { id:'X12P2',name: 'Xiaomi  Redmi Note 12 Pro', price: 89900, quantity: 0 , imageUrl: Note12problack},  
+     { id:'X12P3',name: 'Xiaomi  Redmi Note 12 Pro', price: 89900, quantity: 0 , imageUrl: Note12propurple},  
+     { id:'X12PP1',name: 'Xiaomi  Redmi Note 12 Pro+', price: 120000, quantity: 0, imageUrl: Note12proplusblack },
+     {  id:'X12PP2',name: 'Xiaomi  Redmi Note 12 Pro+', price: 120000, quantity: 0, imageUrl: Note12propluswhite },
+     {  id:'X12PP3',name: 'Xiaomi  Redmi Note 12 Pro+', price: 120000, quantity: 0, imageUrl: Note12proplusblue },
+     { id:'X121',name: 'Xiaomi Redmi Note 12S', price: 69500, quantity: 0 , imageUrl: Note12sblue},   
+     { id:'X122',name: 'Xiaomi Redmi Note 12S', price: 69500, quantity: 0 , imageUrl: Note12sblack},   
+     { id:'X123',name: 'Xiaomi Redmi Note 12S', price: 69500, quantity: 0 , imageUrl: Note12sgreen}   
 
     
   ]);
