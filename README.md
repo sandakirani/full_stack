@@ -60,5 +60,4 @@ A big thanks to the amazing team behind this project:
 ### 📦 Backend (Spring Boot)
 1. Clone the repo and navigate to the backend folder:
    ```bash
-   git clone https://github.com/your-username/mobile-shop.git
-   cd mobile-shop/backend
+   git clone https://github.com/sandakirani/full_stack.git
