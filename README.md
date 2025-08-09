@@ -61,3 +61,18 @@ A big thanks to the amazing team behind this project:
 1. Clone the repo and navigate to the backend folder:
    ```bash
    git clone https://github.com/sandakirani/full_stack.git
+   cd backend
+2. Configure your MongoDB connection in "application.properties"
+
+3. Run the Spring Boot application
+
+### 🌐 Frontend (React)
+1. Navigate to the frontend folder:
+   ```bash
+   cd ../frontend
+2. Install dependencies:
+   ```bash
+   npm install
+3. Start the development server:
+   ```bash
+   npm run dev
