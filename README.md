@@ -55,7 +55,7 @@ A big thanks to the amazing team behind this project:
 
 ---
 
-## 🚀 How to Run Locally
+## 📂 How to Run Locally
 
 ### 📦 Backend (Spring Boot)
 1. Clone the repo and navigate to the backend folder:
