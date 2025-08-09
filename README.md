@@ -17,14 +17,14 @@ This was a collaborative effort where we built a complete, secure, and responsiv
 
 ---
 
-## ✨ Key Features
+## 🎯 Key Features
 
-- 📱 Browse a wide range of mobile phones
-- 🛒 Add phones to cart and checkout
-- 🔐 Secure login and registration with JWT
-- 👤 Role-based access for users/admins
-- 📊 Admin dashboard for managing inventory
-- 💡 Responsive UI for better user experience
+- 🔹 Browse a wide range of mobile phones
+- 🔹 Add phones to cart and checkout
+- 🔹 Secure login and registration with JWT
+- 🔹 Role-based access for users/admins
+- 🔹 Admin dashboard for managing inventory
+- 🔹 Responsive UI for better user experience
 
 ---
 
@@ -38,7 +38,7 @@ This was a collaborative effort where we built a complete, secure, and responsiv
 
 ---
 
-## 🤝 Team Members
+## 👨‍💻 Team Members
 
 A big thanks to the amazing team behind this project:
 
